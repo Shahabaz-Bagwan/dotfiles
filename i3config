@@ -37,7 +37,10 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec i3-dmenu-desktop --dmenu='rofi -dmenu'
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
+
+bindsym $mod+d exec --no-startup-id rofi -show drun -theme dmenu 
+
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -155,8 +158,8 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
         tray_output primary
+	status_command i3status
 	position top
 	colors{
 	focused_workspace #33CC66 #33CC66 #d8d8d8
@@ -180,16 +183,26 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 3 # decrease screen brightnes
 
 exec --no-startup-id synclient VertScrollDelta=-28 && synclient HorizScrollDelta=-28 && synclient VertEdgeScroll=0 && synclient HorizTwoFingerScroll=1
 
-exec --no-startup-id gsettings set org.gnome.desktop.background show-desktop-icons false
+#exec --no-startup-id gsettings set org.gnome.desktop.background show-desktop-icons false
 
-exec --no-startup-id dropbox start
+#exec --no-startup-id dropbox start
+
+exec --no-startup-id pasystray 
 
 exec --no-startup-id nitrogen --restore &
 
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet &
+
+exec --no-startup-id blueman-applet & 
 
 #exec --no-startup-id syndaemon -i 0.75 -t -d
 
 #exec --no-startup-id synclient TouchpadOff=0
 
 #exec --no-startup-id unity-settings-daemon
+
+bindsym $mod+p exec ~/git/dotfiles/hdmi.sh
+
+bindsym $mod+x exec i3lock-fancy 
+
+#this is a comment
