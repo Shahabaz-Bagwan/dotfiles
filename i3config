@@ -30,7 +30,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec rxvt-unicode
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -39,7 +39,7 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec i3-dmenu-desktop --dmenu='rofi -dmenu'
 #bindsym $mod+d exec dmenu_run
 
-bindsym $mod+d exec --no-startup-id rofi -show drun -theme dmenu 
+bindsym $mod+d exec --no-startup-id rofi -show drun -theme arthur 
 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -160,6 +160,7 @@ bindsym $mod+r mode "resize"
 bar {
         tray_output primary
 	status_command i3status
+	font pango:DejaVu Sans Mono 10
 	position top
 	colors{
 	focused_workspace #33CC66 #33CC66 #d8d8d8
@@ -204,5 +205,3 @@ exec --no-startup-id blueman-applet &
 bindsym $mod+p exec ~/git/dotfiles/hdmi.sh
 
 bindsym $mod+x exec i3lock-fancy 
-
-#this is a comment
