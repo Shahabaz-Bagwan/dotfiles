@@ -182,6 +182,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 bindsym XF86MonBrightnessUp exec xbacklight -inc 3 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 3 # decrease screen brightness
 
+
+bindsym --release Print exec `scrot '%d_%m_%y_%H_%M_%S_scrot.png' -e 'mv $f ~/Pictures/'`
+
 exec --no-startup-id synclient VertScrollDelta=-28 && synclient HorizScrollDelta=-28 && synclient VertEdgeScroll=0 && synclient HorizTwoFingerScroll=1
 
 #exec --no-startup-id gsettings set org.gnome.desktop.background show-desktop-icons false
