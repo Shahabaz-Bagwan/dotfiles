@@ -1,6 +1,6 @@
 URxvt.allow_bold:           false
-URxvt*font: xft:Monospace:pixelsize=14
-URxvt*boldFont: xft:Monospace:pixelsize=14
+URxvt*font: xft:Menlo\ for\ Powerline:pixelsize=14
+URxvt*boldFont: xft:Menlo\ for\ Powerline:pixelsize=14
 
 URxvt.transparent: true
 URxvt.shading:30

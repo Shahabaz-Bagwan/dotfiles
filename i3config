@@ -48,10 +48,10 @@ bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -opacity="70"
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -60,10 +60,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -72,7 +72,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+#bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -137,10 +137,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -159,14 +159,14 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         tray_output primary
-	status_command bumblebee-status -m nic disk:home disk:root memory datetime pasink -p root.path=/ home.path=/home/shahabaz datetime.format="%a, %d %b %Y %H:%M" -t dracula-powerline
+	status_command bumblebee-status -m title cpu memory datetime nic pasink -p datetime.format="%a, %d %b %Y %H:%M" -t dracula-powerline
 	font pango:DejaVu Sans Mono 10
 	position top
 
 	    colors {
         background #000000ff
-        statusline #ffffff
-        separator #666666
+        statusline #fffffff
+        separator #666666ff
 
         focused_workspace  #4c7899 #285577 #ffffff
         active_workspace   #333333 #5f676a #ffffff
@@ -186,11 +186,15 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-bindsym --release Print exec `scrot '%d_%m_%y_%H_%M_%S_scrot.png' -e 'mv $f ~/Pictures/'`
+#bindsym --release Print exec `scrot '%d_%m_%y_%H_%M_%S_scrot.png' -e 'mv $f ~/Pictures/scrot/'`
+bindsym Print --release exec "scrot -s ~/Pictures/scrot/%d_%m_%y_%H_%M_%S_scrot.png -e 'xclip -selection c -t image/png < $f'"
+bindsym Shift+Print exec "scrot ~/Pictures/scrot/%d_%m_%y_%H_%M_%S_scrot.png -e 'xclip -selection c -t image/png < $f'"
+
 
 exec --no-startup-id nitrogen --restore &
 
 exec --no-startup-id nm-applet &
+exec ~/git/dotfiles/randomWallpaper.sh
 
 #bindsym $mod+p exec ~/dotfiles/hdmi.sh
 
