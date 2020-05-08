@@ -3,7 +3,7 @@ URxvt*font: xft:Menlo\ for\ Powerline:pixelsize=14
 URxvt*boldFont: xft:Menlo\ for\ Powerline:pixelsize=14
 
 URxvt.transparent: true
-URxvt.shading:30
+URxvt.shading:50
 
 ! Fix font space
 URxvt*letterSpace: -1
@@ -25,12 +25,13 @@ URxvt.cursorUnderline:      false
 ! Pointer
 URxvt.pointerBlank:         true
 
-*background:   [97]#282a36
+*background:   #ffffff
 *foreground:   #eff0eb
 *cursorColor:  #9aedfe
 
 *color0:      #33303b
-*color8:      #4f4b58
+*color8:      #ffffff
+!#4f4b58
 *color1:      #ff5c57
 *color9:      #ff5c57
 *color2:      #5af78e
