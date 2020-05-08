@@ -1,4 +1,4 @@
-set nu
+set rnu
 set ai
 set si
 
@@ -21,8 +21,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
 Plug 'valloric/youcompleteme'
+Plug 'ap/vim-css-color' 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
 " Kye bindings
 map <C-o> :NERDTreeToggle<CR>
+
+" air-line
+let g:airline_powerline_fonts = 1
