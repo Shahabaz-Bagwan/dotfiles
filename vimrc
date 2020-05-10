@@ -1,6 +1,9 @@
 set rnu
 set ai
 set si
+set incsearch
+set ts=2
+syntax enable
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
