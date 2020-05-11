@@ -1,4 +1,5 @@
 URxvt.allow_bold:           false
+! install menlo font https://github.com/abertsch/Menlo-for-Powerline
 URxvt*font: xft:Menlo\ for\ Powerline:pixelsize=14
 URxvt*boldFont: xft:Menlo\ for\ Powerline:pixelsize=14
 

@@ -6,7 +6,13 @@ set shiftwidth=2
 set expandtab
 set ai
 set si
+<<<<<<< HEAD
 set cursorline
+=======
+set incsearch
+set ts=2
+syntax enable
+>>>>>>> 480241fb7b8cbb0abd926662c22656bddc401050
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
