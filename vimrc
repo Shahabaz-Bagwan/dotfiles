@@ -1,6 +1,12 @@
 set rnu
+set incsearch
+set nohlsearch
+set tabstop=2
+set shiftwidth=2
+set expandtab
 set ai
 set si
+set cursorline
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
