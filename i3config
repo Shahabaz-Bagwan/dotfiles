@@ -15,6 +15,25 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:monospace 8
 
+###--- i3 coloring ---###
+# Make it clear when failed using red - otherwise set i3 colors with wal from xresources
+set_from_resource $bg           i3wm.color0 #ff0000
+set_from_resource $bg-alt       i3wm.color14 #ff0000
+set_from_resource $fg           i3wm.color15 #ff0000
+set_from_resource $fg-alt       i3wm.color2 #ff0000
+set_from_resource $hl           i3wm.color13 #ff0000
+
+# class                 border      backgr. text indicator      child_border
+client.focused          $fg-alt     $bg     $hl  $fg-alt        $hl
+client.focused_inactive $fg-alt     $bg     $fg  $fg-alt        $fg-alt
+client.unfocused        $fg-alt     $bg     $fg  $fg-alt        $fg-alt
+client.urgent           $fg-alt     $bg     $fg  $fg-alt        $fg-alt
+client.placeholder      $fg-alt     $bg     $fg  $fg-alt        $fg-alt
+client.background $bg
+
+
+
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -163,17 +182,16 @@ bar {
 	font pango:DejaVu Sans Mono 10
 	position top
 
-	    colors {
-        background #000000ff
-        statusline #fffffff
-        separator #666666ff
+	     colors {
+        background $bg
+        statusline $bg-alt
+        separator  $bg-alt
 
-        focused_workspace  #4c7899 #285577 #ffffff
-        active_workspace   #333333 #5f676a #ffffff
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #2f343a #900000 #ffffff
-        binding_mode       #2f343a #900000 #ffffff
+#                      border  backgr. text
+        focused_workspace  $fg-alt $fg-alt $fg
+        inactive_workspace $fg-alt $fg-alt $hg
     }
+
 }
 
 #Suspending the system
@@ -198,14 +216,17 @@ exec ~/git/dotfiles/randomWallpaper.sh
 
 #bindsym $mod+p exec ~/dotfiles/hdmi.sh
 
-bindsym $mod+x exec i3lock-fancy 
-
-bindsym $mod+z exec ~/git/dotfiles/randomWallpaper.sh
-
+# window gaps and other settings
 for_window [class="^.*"] border pixel 0
 gaps inner 2
 gaps outer 2
+for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down 20 px
 
 # hotkeys
 bindsym $mod+w exec --no-startup-id firefox 
 bindsym $mod+f exec --no-startup-id thunar
+bindsym $mod+x exec i3lock-fancy 
+#bindsym $mod+z exec ~/git/dotfiles/randomWallpaper.sh
+bindsym $mod+z exec --no-startup-id wal -i /home/shahabaz/Pictures/wallpapers/
+
+

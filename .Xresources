@@ -4,7 +4,7 @@ URxvt*font: xft:Menlo\ for\ Powerline:pixelsize=14
 URxvt*boldFont: xft:Menlo\ for\ Powerline:pixelsize=14
 
 URxvt.transparent: true
-URxvt.shading:50
+URxvt.shading:30
 
 ! Fix font space
 URxvt*letterSpace: -1
@@ -47,3 +47,5 @@ URxvt.pointerBlank:         true
 *color14:     #9aedfe
 *color7:      #eff0eb
 *color15:     #eff0eb
+!*color7:      #eff0eb
+!*color15:     #eff0eb

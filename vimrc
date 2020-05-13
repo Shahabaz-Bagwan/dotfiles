@@ -28,7 +28,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
 Plug 'valloric/youcompleteme'
-Plug 'ap/vim-css-color' 
+Plug 'ap/vim-css-color'
+Plug 'terryma/vim-multiple-cursors'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
