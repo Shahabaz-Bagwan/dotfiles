@@ -9,4 +9,5 @@ alias l 'ls'
 # theme settings usign Oh-My-Fish
 set -g theme_color_scheme light
 set -g theme_date_timezone Europe/Berlin
-
+set -g theme_nerd_fonts yes
+set -g theme_powerline_fonts no
