@@ -8,5 +8,7 @@ FILES=($DIR/*)
 WALLPAPER=`printf "%s\n" "${FILES[RANDOM % ${#FILES[@]}]}"`
 WALLPAPER1=`printf "%s\n" "${FILES[RANDOM % ${#FILES[@]}]}"`
 # Set as desktop background:
-#nitrogen --set-scaled "$WALLPAPER"
-feh --bg-scale "$WALLPAPER" --bg-scale "$WALLPAPER1"
+feh --bg-fill "$WALLPAPER" --bg-fill "$WALLPAPER1"
+echo $WALLPAPER
+wal -ni "$WALLPAPER"
+i3 restart

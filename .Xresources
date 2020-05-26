@@ -4,7 +4,7 @@ URxvt*font: xft:Menlo\ for\ Powerline:pixelsize=14
 URxvt*boldFont: xft:Menlo\ for\ Powerline:pixelsize=14
 
 URxvt.transparent: true
-URxvt.shading:30
+URxvt.shading:10
 
 ! Fix font space
 URxvt*letterSpace: -1

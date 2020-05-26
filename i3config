@@ -91,17 +91,17 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-#bindsym $mod+h split h
+# bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+Shift+f fullscreen toggle
+# bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -114,7 +114,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+# bindsym $mod+d focus child
 
 # switch to workspace
 bindsym $mod+Tab workspace next
@@ -176,11 +176,12 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+#  separator for bumblebee-status ".local/share/bumblebee-status/themes/icons/awesome-fonts.json"
 bar {
         tray_output primary
-	status_command bumblebee-status -m title cpu memory datetime nic pasink -p datetime.format="%a, %d %b %Y %H:%M" datetime.locale="de_DE.UTF8" -t solarized-powerline 
-	font pango:DejaVu Sans Mono 10
-	position top
+        status_command bumblebee-status -m title cpu memory datetime nic battery brightness pasource pasink -p datetime.format="%a, %d %b %Y %H:%M" datetime.locale="de_DE.UTF8" -t wal-powerline 
+      	font pango:Menlo for Powerline 10
+      	position top
 
 	     colors {
         background $bg
@@ -204,18 +205,20 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-#bindsym --release Print exec `scrot '%d_%m_%y_%H_%M_%S_scrot.png' -e 'mv $f ~/Pictures/scrot/'`
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+
 bindsym Print --release exec "scrot -s ~/Pictures/scrot/%d_%m_%y_%H_%M_%S_scrot.png -e 'xclip -selection c -t image/png < $f'"
 bindsym Shift+Print exec "scrot ~/Pictures/scrot/%d_%m_%y_%H_%M_%S_scrot.png -e 'xclip -selection c -t image/png < $f'"
 
-
+# Startup apps and settings
 exec --no-startup-id nitrogen --restore &
-
 exec --no-startup-id nm-applet &
-#exec ~/git/dotfiles/randomWallpaper.sh
-
-#bindsym $mod+p exec ~/dotfiles/hdmi.sh
-exec --no-startup-id wal -i /home/shahabaz/Pictures/wallpapers/
+exec --no-startup-id blueman-applet &
+exec ~/git/dotfiles/randomWallpaper.sh
+exec --no-startup-id xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
+exec --no-startup-id xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Natural Scrolling Enabled" 1
 
 
 # window gaps and other settings
@@ -228,7 +231,5 @@ for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move d
 bindsym $mod+w exec --no-startup-id firefox 
 bindsym $mod+f exec --no-startup-id thunar
 bindsym $mod+x exec i3lock-fancy 
-#bindsym $mod+z exec ~/git/dotfiles/randomWallpaper.sh
-bindsym $mod+z exec --no-startup-id wal -i /home/shahabaz/Pictures/wallpapers/
-
-
+bindsym $mod+s exec skypeforlinux 
+bindsym $mod+z exec ~/git/dotfiles/randomWallpaper.sh
