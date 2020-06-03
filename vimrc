@@ -6,6 +6,8 @@ set shiftwidth=2
 set expandtab
 set ai
 set si
+set smartcase
+set ignorecase
 set cursorline
 syntax enable
 
