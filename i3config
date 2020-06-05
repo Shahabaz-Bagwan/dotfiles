@@ -234,3 +234,4 @@ bindsym $mod+f exec --no-startup-id thunar
 bindsym $mod+x exec i3lock-fancy 
 bindsym $mod+s exec skype
 bindsym $mod+z exec ~/git/dotfiles/randomWallpaper.sh
+bindsym $mod+p exec ~/git/dotfiles/monitors.sh

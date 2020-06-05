@@ -14,10 +14,9 @@ URxvt.allow_bold:           true
 
 URxvt.font: xft:Inconsolata\ Nerd\ Font\ Mono:pixelsize=20
 
-
 ! Transparency
 URxvt.transparent: true
-URxvt.shading:30
+URxvt.shading:20
 
 ! Font on the fly change
 URxvt.keysym.C-Up:     font-size:increase
