@@ -213,7 +213,7 @@ bindsym Print --release exec "scrot -s ~/Pictures/scrot/%d_%m_%y_%H_%M_%S_scrot.
 bindsym Shift+Print exec "scrot ~/Pictures/scrot/%d_%m_%y_%H_%M_%S_scrot.png -e 'xclip -selection c -t image/png < $f'"
 
 # Startup apps and settings
-exec --no-startup-id nitrogen --restore &
+# exec --no-startup-id nitrogen --restore &
 exec --no-startup-id nm-applet &
 exec --no-startup-id blueman-applet &
 exec ~/git/dotfiles/randomWallpaper.sh
@@ -222,11 +222,13 @@ exec --no-startup-id xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput 
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id slimbookbattery &
 
-# window gaps and other settings
+# window gaps and other settings use xprop to get window info and set accordingly
 for_window [class="^.*"] border pixel 0
 gaps inner 2
 gaps outer 2
 for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down 20 px
+for_window [class="(?i)pavucontrol"] floating enable, resize set 600 400
+for_window [class="(?i)gnome-calculator"] floating enable, resize set 300 400
 
 # hotkeys
 bindsym $mod+w exec --no-startup-id firefox 

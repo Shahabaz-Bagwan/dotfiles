@@ -1,9 +1,11 @@
 set nu rnu
+set exrc
+set secure
 set incsearch
 set nohlsearch
 set tabstop=2
 set shiftwidth=2
-"set expandtab
+set noswapfile
 set smarttab
 set softtabstop=2
 set ai
@@ -11,7 +13,7 @@ set si
 set smartcase
 set ignorecase
 set cursorline
-set fdm=syntax
+"set fdm=indent
 syntax enable
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -44,6 +46,10 @@ call plug#end()
 
 let mapleader = " "
 
+
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+
 " Kye bindings
+nmap <F6> :NERDTreeToggle<CR>
 " air-line
 let g:airline_powerline_fonts = 1
