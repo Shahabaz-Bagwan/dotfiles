@@ -58,8 +58,8 @@ bindsym $mod+q kill
 #bindsym $mod+d exec i3-dmenu-desktop --dmenu='rofi -dmenu'
 #bindsym $mod+d exec dmenu_run
 
-bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -opacity="70"
-
+bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -opacity="70" -display-drun " " -display-window " " -display-run " " -display-ssh " "
+bindsym $mod+Shift+d exec --no-startup-id `locate -e -i --regex "/home/$USER/[^\.]+" | rofi -dmenu -i | xargs -r -0 xdg-open`
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -237,3 +237,4 @@ bindsym $mod+x exec i3lock-fancy
 bindsym $mod+s exec skype
 bindsym $mod+z exec ~/git/dotfiles/randomWallpaper.sh
 bindsym $mod+p exec ~/git/dotfiles/monitors.sh
+bindsym $mod+Shift+p exec ~/git/dotfiles/displaySelect.sh
