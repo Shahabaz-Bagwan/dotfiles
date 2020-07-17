@@ -221,6 +221,7 @@ exec --no-startup-id xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput 
 exec --no-startup-id xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Natural Scrolling Enabled" 1
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id slimbookbattery &
+exec --no-startup-id setxkbmap -option caps:none
 
 # window gaps and other settings use xprop to get window info and set accordingly
 for_window [class="^.*"] border pixel 0

@@ -14,7 +14,7 @@ fi
 
 if [ $monitor_mode = "all" ]; then
         monitor_mode="EXTERNAL"
-        xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT --auto --primary --output $EXTERNAL_OUTPUT2 --auto --right-of $EXTERNAL_OUTPUT
+        xrandr --output $INTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT2 --auto --output $EXTERNAL_OUTPUT --auto --primary --left-of $EXTERNAL_OUTPUT2
 elif [ $monitor_mode = "EXTERNAL" ]; then
         monitor_mode="INTERNAL"
         xrandr --output $INTERNAL_OUTPUT --auto --primary --output $EXTERNAL_OUTPUT --off --output $EXTERNAL_OUTPUT2 --off

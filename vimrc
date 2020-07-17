@@ -13,7 +13,6 @@ set si
 set smartcase
 set ignorecase
 set cursorline
-"set fdm=indent
 syntax enable
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -23,9 +22,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 if has("gui_running")
-    set guifont=Inconsolata\ Nerd\ Font\ Mono\ 12
-    colorscheme evening
+	set guifont=Inconsolata\ Nerd\ Font\ Mono\ 12
+	colorscheme evening
 endif
+
 
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
