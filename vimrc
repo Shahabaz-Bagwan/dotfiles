@@ -41,11 +41,10 @@ Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
 Plug 'valloric/youcompleteme'
 Plug 'ap/vim-css-color'
+Plug 'editorconfig/editorconfig-vim'
 " List ends here. Plugins become visible to Vim after this call.
+
 call plug#end()
-
-let mapleader = " "
-
 
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 

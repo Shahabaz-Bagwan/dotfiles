@@ -9,3 +9,7 @@ set -g theme_color_scheme light
 set -g theme_date_timezone Europe/Berlin
 set -g theme_nerd_fonts yes
 set -g theme_powerline_fonts no
+
+function fish_user_key_bindings
+	bind \cH backward-kill-path-component
+end

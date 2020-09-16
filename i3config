@@ -52,7 +52,7 @@ floating_modifier $mod
 bindsym $mod+Return exec rxvt-unicode
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec i3-dmenu-desktop --dmenu='rofi -dmenu'
@@ -222,6 +222,7 @@ exec --no-startup-id xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput 
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id slimbookbattery &
 exec --no-startup-id setxkbmap -option caps:none
+exec --no-startup-id guake &
 
 # window gaps and other settings use xprop to get window info and set accordingly
 for_window [class="^.*"] border pixel 0
@@ -229,13 +230,17 @@ gaps inner 2
 gaps outer 2
 for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down 20 px
 for_window [class="(?i)pavucontrol"] floating enable, resize set 600 400
+for_window [class="(?i)Blueman-manager"] floating enable, resize set 600 400
 for_window [class="(?i)gnome-calculator"] floating enable, resize set 300 400
+for_window [class="(?i)microsoft teams - preview"] floating enable, resize set 700 500
+for_window [class="(?i)Skype"] floating enable, resize set 800 600
 
 # hotkeys
 bindsym $mod+w exec --no-startup-id firefox 
 bindsym $mod+f exec --no-startup-id thunar
-bindsym $mod+x exec i3lock-fancy 
+bindsym $mod+x exec ~/git/dotfiles/lockWithRandomWallpaper.sh
 bindsym $mod+s exec skype
 bindsym $mod+z exec ~/git/dotfiles/randomWallpaper.sh
 bindsym $mod+p exec ~/git/dotfiles/monitors.sh
 bindsym $mod+Shift+p exec ~/git/dotfiles/displaySelect.sh
+bindsym XF86Calculator exec --no-startup-id gnome-calculator
