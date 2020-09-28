@@ -232,8 +232,9 @@ for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move d
 for_window [class="(?i)pavucontrol"] floating enable, resize set 600 400
 for_window [class="(?i)Blueman-manager"] floating enable, resize set 600 400
 for_window [class="(?i)gnome-calculator"] floating enable, resize set 300 400
-for_window [class="(?i)microsoft teams - preview"] floating enable, resize set 700 500
-for_window [class="(?i)Skype"] floating enable, resize set 800 600
+for_window [class="(?i)Skype"] floating enable, resize set 800 700, move to workspace 10
+for_window [title="(?i)WhatsApp - Mozilla Firefox"] floating enable, resize set 800 610, move to workspace 10
+for_window [title="(?i) Microsoft Teams"] floating enable, resize set 900 700, move to workspace 10
 
 # hotkeys
 bindsym $mod+w exec --no-startup-id firefox 
