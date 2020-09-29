@@ -223,6 +223,7 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 exec --no-startup-id slimbookbattery &
 exec --no-startup-id setxkbmap -option caps:none
 exec --no-startup-id guake &
+exec --no-startup-id copyq &
 
 # window gaps and other settings use xprop to get window info and set accordingly
 for_window [class="^.*"] border pixel 0
@@ -232,6 +233,7 @@ for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move d
 for_window [class="(?i)pavucontrol"] floating enable, resize set 600 400
 for_window [class="(?i)Blueman-manager"] floating enable, resize set 600 400
 for_window [class="(?i)gnome-calculator"] floating enable, resize set 300 400
+for_window [class="(?i)copyq"] floating enable, resize set 600 400
 for_window [class="(?i)Skype"] floating enable, resize set 800 700, move to workspace 10
 for_window [title="(?i)WhatsApp - Mozilla Firefox"] floating enable, resize set 800 610, move to workspace 10
 for_window [title="(?i) Microsoft Teams"] floating enable, resize set 900 700, move to workspace 10
@@ -241,6 +243,7 @@ bindsym $mod+w exec --no-startup-id firefox
 bindsym $mod+f exec --no-startup-id thunar
 bindsym $mod+x exec ~/git/dotfiles/lockWithRandomWallpaper.sh
 bindsym $mod+s exec skype
+bindsym $mod+c exec code
 bindsym $mod+z exec ~/git/dotfiles/randomWallpaper.sh
 bindsym $mod+p exec ~/git/dotfiles/monitors.sh
 bindsym $mod+Shift+p exec ~/git/dotfiles/displaySelect.sh
