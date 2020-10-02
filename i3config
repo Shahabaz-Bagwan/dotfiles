@@ -240,10 +240,12 @@ for_window [title="(?i) Microsoft Teams"] floating enable, resize set 900 700, m
 
 # hotkeys
 bindsym $mod+w exec --no-startup-id firefox 
+bindsym $mod+Shift+w exec --no-startup-id firefox web.whatsapp.com
 bindsym $mod+f exec --no-startup-id thunar
 bindsym $mod+x exec ~/git/dotfiles/lockWithRandomWallpaper.sh
 bindsym $mod+s exec skype
 bindsym $mod+c exec code
+bindsym $mod+t exec --no-startup-id firefox teams.microsoft.com
 bindsym $mod+z exec ~/git/dotfiles/randomWallpaper.sh
 bindsym $mod+p exec ~/git/dotfiles/monitors.sh
 bindsym $mod+Shift+p exec ~/git/dotfiles/displaySelect.sh
