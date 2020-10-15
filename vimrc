@@ -1,20 +1,20 @@
-set nu rnu
-set exrc
-set secure
-set incsearch
-set nohlsearch
-set tabstop=2
-set shiftwidth=2
-set noswapfile
-set smarttab
-set softtabstop=2
-set ai
-set fdm=syntax
-set si
-set smartcase
-set ignorecase
-set cursorline
-syntax enable
+set nu rnu " relative line numbers
+set exrc " use vim config in vi
+set secure " doesn't allow other users to write in vimrc
+set incsearch " incremental serach
+set nohlsearch " no highlights in serach
+set tabstop=2 " set tab to 2 space width
+set shiftwidth=2 " convert tabs to 2 spaces
+set noswapfile " no need to create swap file it may slow the computer
+set smarttab " sets tabs according to tabstop 
+set softtabstop=2 " similar to tabstop but in local buffer
+set ai " auto indent when typing 
+set nofoldenable " no fold when opening files
+set fdm=syntax " fold according to syntax
+set si " substitute command for bracket sub
+set smartcase " pattern for search
+set cursorline " highlights the current line
+syntax enable " enables syntax highlighting
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
