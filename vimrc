@@ -9,6 +9,7 @@ set noswapfile
 set smarttab
 set softtabstop=2
 set ai
+set fdm=syntax
 set si
 set smartcase
 set ignorecase
@@ -38,6 +39,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
+Plug 'djoshea/vim-autoread'
 Plug 'bling/vim-airline'
 Plug 'valloric/youcompleteme'
 Plug 'ap/vim-css-color'
