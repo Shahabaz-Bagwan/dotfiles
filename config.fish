@@ -1,5 +1,5 @@
 # aliases 
-alias la '/home/shahabaz/.cargo/bin/exa -al --color=always --group-directories-first'
+alias la 'll -a'
 alias rm 'rm -vI'
 alias mv 'mv -vi'
 alias cp 'cp -v'

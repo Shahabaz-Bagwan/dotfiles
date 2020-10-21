@@ -2,7 +2,7 @@
 
 echo "Installing required softwares....."
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade -y
 sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
 	libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
 	libstartup-notification0-dev libxcb-randr0-dev \
@@ -10,67 +10,62 @@ sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
 	libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
 	autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev \
 	ranger vim vim-gtk python3-pip rofi mpv scrot \
-	thunar htop arandr zathura fish rxvt-unicode lightdm \
-	curl lxappearance papirus-icon-theme numix-gtk-theme \
+	thunar htop arandr zathura fish rxvt-unicode \
+	curl lxappearance numix-gtk-theme \
 	breeze-cursor-theme xclip guake copyq vlc \
 	blueman network-manager gsimplecal feh pavucontrol \
-	pulseaudio lm-sensors cargo git i3-lock imagemagick
+	pulseaudio lm-sensors git i3lock imagemagick
 
-cargo install exa
-echo 'if [ -d "$HOME/.cargo/bin" ] ; then
-    PATH="$HOME/.cargo/bin:$PATH"
-	fi' > ~/.profile
+echo "change shell to fish shell...."
+sudo chsh -s /usr/bin/fish
 
 echo "Getting configs from git and setting them...."
 git clone https://github.com/Shahabaz-B/dotfiles.git ~/github
 
 echo "Installing correct fonts...."
-if [ -d "~/.fonts" ]; then
-  echo "Installing fonts in ~/.fonts..."
-	cp ~/github/fonts/* ~/.fonts/
-	unzip ~/.fonts /Inconsolata.zip -d ~/.fonts
+if [ -d "$HOME/.fonts" ]; then
+  echo "Installing fonts in $HOME/.fonts..."
+	cp $HOME/github/fonts/* $HOME/.fonts/
+	unzip $HOME/.fonts/Inconsolata.zip -d $HOME/.fonts
 	fc-cache -fv
 else
-  echo "Creating ~/.fonts  directory and installing fonts in ~/.fonts "
-	mkdir ~/.fonts
-	cp ~/github/fonts/* ~/.fonts
-	unzip ~/.fonts /Inconsolata.zip -d ~/.fonts
+  echo "Creating $HOME/.fonts  directory and installing fonts in $HOME/.fonts "
+	mkdir $HOME/.fonts
+	cp $HOME/github/fonts/* $HOME/.fonts
+	unzip $HOME/.fonts/Inconsolata.zip -d $HOME/.fonts
 	fc-cache -fv
 fi
 
 echo "linking configs..."
-if [-d "~/.config/fish"]; then
-	ln -sf ~/github/config.fish ~/.config/fish/config.fish
+if [ -d "$HOME/.config/fish" ]; then
+	ln -sf $HOME/github/config.fish $HOME/.config/fish/config.fish
 else
-	mkdir ~/.config/fish
-	ln -sf ~/github/config.fish ~/.config/fish/config.fish
+	mkdir $HOME/.config/fish
+	ln -sf $HOME/github/config.fish $HOME/.config/fish/config.fish
 fi
 
-if [-d "~/.config/i3"]; then
-	ln -sf ~/github/i3config ~/.config/i3/config
+if [ -d "$HOME/.config/i3" ]; then
+	ln -sf $HOME/github/i3config $HOME/.config/i3/config
 else
-	mkdir ~/.config/i3
-	ln -sf ~/github/i3config ~/.config/i3/config
+	mkdir $HOME/.config/i3
+	ln -sf $HOME/github/i3config $HOME/.config/i3/config
 fi
 
-ln -sf ~/github/vimrc ~/.vimrc
-ln -sf ~/github/Xresources ~/.Xresources
-xrdb -merge ~/.Xresources
+ln -sf $HOME/github/vimrc $HOME/.vimrc
+ln -sf $HOME/github/Xresources $HOME/.Xresources
+xrdb -merge $HOME/.Xresources
 
-git clone https://github.com/Shahabaz-B/wallpapers.git ~/Pictures/wallpapers
-mkdir ~/Pictures/scrot
+git clone https://github.com/Shahabaz-B/wallpapers.git $HOME/Pictures/wallpapers
+mkdir $HOME/Pictures/scrot
 
+touch $HOME/scrp.sh
+curl -L https://get.oh-my.fish > $HOME/scrp.sh
+fish $HOME/scrp.sh --noninteractive
 
-fish << 'END_FISH'
-	echo "Installing OMF for fish shell...."
-	curl -L https://get.oh-my.fish | fish
-	
+fish << 'themeInstall'
 	echo	"Setting fish theme as bobthefish"
 	omf install bobthefish
-END_FISH
-
-echo "change shell to fish shell...."
-chsh -s /usr/bin/fish
+themeInstall
 
 echo "Installing bumblebee status-bar...."
 pip3 install i3ipc
