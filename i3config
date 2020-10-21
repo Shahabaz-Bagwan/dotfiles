@@ -207,12 +207,14 @@ exec --no-startup-id guake &
 exec --no-startup-id copyq &
 
 # window gaps and other settings use xprop to get window info and set accordingly
+# get window info with xprop and add the setting here
 for_window [class="^.*"] border pixel 0
 gaps inner 2
 gaps outer 2
 for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down 20 px
 for_window [class="(?i)pavucontrol"] floating enable, resize set 600 400
 for_window [class="(?i)Blueman-manager"] floating enable, resize set 600 400
+for_window [class="(?i)arandr"] floating enable, resize set 700 500
 for_window [class="(?i)gnome-calculator"] floating enable, resize set 300 400
 for_window [class="(?i)copyq"] floating enable, resize set 600 400
 for_window [class="(?i)cmake"] floating enable, resize set 600 800
