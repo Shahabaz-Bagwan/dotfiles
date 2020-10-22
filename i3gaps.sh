@@ -17,7 +17,7 @@ sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
 	pulseaudio lm-sensors git i3lock imagemagick
 
 echo "change shell to fish shell...."
-sudo chsh -s /usr/bin/fish
+sudo chsh -s /usr/bin/fish $USER
 
 echo "Getting configs from git and setting them...."
 git clone https://github.com/falconSB/dotfiles.git ~/github
