@@ -6,5 +6,5 @@ DIR="$HOME/Pictures/wallpapers"
 FILES=($DIR/*)
 WALLPAPER=`printf "%s\n" "${FILES[RANDOM % ${#FILES[@]}]}"`
 # Set as desktop background:
-magick convert -geometry 1920x $WALLPAPER /tmp/lockImg.png 
+convert -geometry 1920x $WALLPAPER /tmp/lockImg.png 
 i3lock -ti /tmp/lockImg.png
