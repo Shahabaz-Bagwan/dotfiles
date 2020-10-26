@@ -54,6 +54,7 @@ fi
 ln -sf $HOME/github/vimrc $HOME/.vimrc
 ln -sf $HOME/github/Xresources $HOME/.Xresources
 xrdb -merge $HOME/.Xresources
+ln -sf $HOME/github/xbindkeysrc $HOME/.xbindkeysrc
 
 git clone https://github.com/falconSB/wallpapers.git $HOME/Pictures/wallpapers
 mkdir $HOME/Pictures/scrot
@@ -72,11 +73,8 @@ pip3 install i3ipc
 pip3 install psutil
 pip3 install --user bumblebee-status
 
-# at this path change icons if they are not displayed correctly
-# ~/.local/lib/python2.7/site-packages/bumblebee/themes/icons/awesome-fonts.json 
-
 # at this path add gsimplecal so that click on date show the gisimplecal
-# ~/.local/lib/python2.7/site-packages/bumblebee/modules/datetime.py
+# ~/.local/lib/python3.6/site-packages/bumblebee/modules/core/datetime.py
 
 echo "Installing pywal to get color-scheme from wallpaper"
 sudo pip3 install pywal

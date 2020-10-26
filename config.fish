@@ -4,6 +4,10 @@ alias rm 'rm -vI'
 alias mv 'mv -vi'
 alias cp 'cp -v'
 alias r 'ranger'
+alias gs 'git status'
+alias gc 'git commit -am'
+alias ga 'git add -A'
+
 # theme settings usign Oh-My-Fish
 set -g theme_color_scheme light
 set -g theme_date_timezone Europe/Berlin
