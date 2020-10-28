@@ -33,6 +33,10 @@ call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary'
+Plug 'christoomey/vim-sort-motion'
+"Plug 'christoomey/vim-system-copy'
+Plug 'vim-scrpts/ReplaceWithRegister'
 Plug 'junegunn/seoul256.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/fzf.vim'

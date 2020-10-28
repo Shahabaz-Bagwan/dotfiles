@@ -15,5 +15,5 @@ set -g theme_nerd_fonts yes
 set -g theme_powerline_fonts no
 
 function fish_user_key_bindings
-	bind \cH backward-kill-path-component
+	bind \cH backward-kill-word
 end

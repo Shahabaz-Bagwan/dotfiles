@@ -235,6 +235,5 @@ bindsym $mod+c exec code
 bindsym $mod+z exec ~/github/randomWallpaper.sh
 bindsym $mod+p exec ~/github/monitors.sh
 bindsym $mod+Shift+p exec ~/github/displaySelect.sh
-bindsym $mod+Shift+b --no-startup-id copyq
 bindsym XF86Calculator exec --no-startup-id gnome-calculator
 bindsym $mod+t exec ~/github/stickyToggle.sh
