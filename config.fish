@@ -7,6 +7,7 @@ alias r 'ranger'
 alias gs 'git status'
 alias gc 'git commit -am'
 alias ga 'git add -A'
+alias gd 'git diff'
 
 # theme settings usign Oh-My-Fish
 set -g theme_color_scheme light

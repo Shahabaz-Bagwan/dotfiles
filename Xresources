@@ -18,7 +18,7 @@ URxvt.allow_bold:           true
 !URxvt*font: xft:mononoki-Regular Nerd Font Complete Mono:pixelsize=14
 !URxvt*boldFont: xft:mononoki Bold Nerd Font Complete Mono:pixelsize=14
 
-URxvt.font: xft:Inconsolata\ Nerd\ Font\ Mono:pixelsize=20
+URxvt.font: xft:Inconsolata\ Nerd\ Font\ Mono:pixelsize=18
 
 ! Transparency
 URxvt.transparent: true

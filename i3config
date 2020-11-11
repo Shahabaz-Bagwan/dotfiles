@@ -92,6 +92,9 @@ bindsym $mod+v split v
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+e layout toggle split
 
+# enter fullscreen mode for the focused container
+bindsym $mod+Shift+f fullscreen toggle 
+
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
@@ -161,7 +164,7 @@ bindsym $mod+r mode "resize"
 #  separator for bumblebee-status ".local/share/bumblebee-status/themes/icons/awesome-fonts.json"
 bar {
         tray_output primary
-        status_command ~/.local/bin/bumblebee-status -m title cpu memory datetime nic battery brightness pasource pasink -p datetime.format="%a, %d %b %Y %H:%M" datetime.locale="de_DE.UTF8" -t wal-powerline 
+        status_command ~/.local/bin/bumblebee-status -m title cpu memory datetime nic battery brightness pasource pasink -p nic.states=^down nic.format={ip} datetime.format="%a, %d %b %Y %H:%M" datetime.locale="de_DE.UTF8" -t wal-powerline 
       	font pango:Menlo for Powerline 10
       	position top
 
@@ -204,6 +207,7 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 exec --no-startup-id slimbookbattery &
 exec --no-startup-id setxkbmap -option caps:none
 exec --no-startup-id guake &
+exec --no-startup-id compton &
 exec --no-startup-id copyq &
 exec --no-startup-id xbindkeys &
 
@@ -215,22 +219,23 @@ gaps outer 2
 for_window [class="(?i)gsimplecal"] floating enable, move position mouse, move down 20 px
 for_window [class="(?i)pavucontrol"] floating enable, resize set 600 400
 for_window [class="(?i)Blueman-manager"] floating enable, resize set 600 400
+for_window [class="(?i)lxappearance"] floating enable, resize set 600 400
 for_window [class="(?i)arandr"] floating enable, resize set 700 500
 for_window [class="(?i)gnome-calculator"] floating enable, resize set 300 400
 for_window [class="(?i)copyq"] floating enable, resize set 600 400
 for_window [class="(?i)cmake"] floating enable, resize set 600 800
-for_window [class="(?i)Skype"] floating enable, resize set 800 700, move to workspace 10
-for_window [title="(?i)WhatsApp - Mozilla Firefox"] floating enable, resize set 800 800, move to workspace 10
-for_window [title="(?i) Microsoft Teams"] floating enable, resize set 800 800, move to workspace 10
-for_window [title="(?i)insight - Mozilla Firefox"] move to workspace 1
-for_window [title="(?i)svr-fwa-01 - Mozilla Firefox"] move to workspace 1
-for_window [title="(?i)Outlook - Mozilla Firefox"] move to workspace 1
+for_window [class="(?i)Skype"] floating enable, resize set 800 800, move to workspace 10
+for_window [title="(?i)WhatsApp"] floating enable, resize set 800 800, move to workspace 10
+for_window [title="(?i)Microsoft Teams"] floating enable, resize set 800 800, move to workspace 10
+for_window [title="(?i)insight"] move to workspace 9
+for_window [title="(?i)svr-fwa-01"] move to workspace 9
+for_window [title="(?i)Outlook"] move to workspace 9
 
 # hotkeys
 bindsym $mod+w exec --no-startup-id firefox 
 bindsym $mod+f exec --no-startup-id thunar
 bindsym $mod+x exec ~/github/lockWithRandomWallpaper.sh
-bindsym $mod+s exec ~/officeSetup.sh
+bindsym $mod+Shift+s exec ~/officeSetup.sh
 bindsym $mod+c exec code
 bindsym $mod+z exec ~/github/randomWallpaper.sh
 bindsym $mod+p exec ~/github/monitors.sh
