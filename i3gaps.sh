@@ -14,7 +14,7 @@ sudo apt install -y libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
 	curl lxappearance numix-gtk-theme \
 	breeze-cursor-theme xclip guake copyq vlc \
 	blueman network-manager gsimplecal feh pavucontrol \
-	pulseaudio lm-sensors git i3lock imagemagick
+	pulseaudio lm-sensors git i3lock imagemagick compton
 
 echo "change shell to fish shell...."
 sudo chsh -s /usr/bin/fish $USER
@@ -66,6 +66,7 @@ fish $HOME/scrp.sh --noninteractive
 fish << 'themeInstall'
 	echo	"Setting fish theme as bobthefish"
 	omf install bobthefish
+  omf install https://github.com/jethrokuan/fzf  
 themeInstall
 
 echo "Installing bumblebee status-bar...."

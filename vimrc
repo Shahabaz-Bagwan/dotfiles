@@ -13,7 +13,6 @@ set nofoldenable " no fold when opening files
 set fdm=syntax " fold according to syntax
 set si " substitute command for bracket sub
 set smartcase " pattern for search
-set cursorline " highlights the current line
 syntax enable " enables syntax highlighting
 filetype plugin on
 
@@ -33,30 +32,20 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-pathogen'
 Plug 'preservim/tagbar'
-Plug 'Rip-Rip/clang_complete'
-Plug 'vim-scripts/a.vim'
 Plug 'Townk/vim-autoclose'
-Plug 'tpope/vim-commentary' " add comments in file
-Plug 'christoomey/vim-sort-motion'
-Plug 'WolfgangMehner/c-support' " support for C/c++
-Plug 'junegunn/seoul256.vim'
+Plug 'preserv/nerdcommenter' " add comments in file
 Plug 'terryma/vim-multiple-cursors' " multiple cursor
 Plug 'junegunn/fzf.vim' " fuzzy search
 Plug 'tpope/vim-surround' " surround with braces or punctuation
 Plug 'scrooloose/nerdtree' " tree explorer
-Plug 'scrooloose/syntastic' " syntax highlighting
-Plug 'djoshea/vim-autoread'
 Plug 'bling/vim-airline' " vim-statusbar theme
 Plug 'valloric/youcompleteme' " auto-complete in vim
 Plug 'ap/vim-css-color' " shows color of css codes
-Plug 'editorconfig/editorconfig-vim'
 " List ends here. Plugins become visible to Vim after this call.
 
 call plug#end()
-
+let mapleader=","
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 
 " Kye bindings

@@ -58,7 +58,7 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec i3-dmenu-desktop --dmenu='rofi -dmenu'
 #bindsym $mod+d exec dmenu_run
 
-bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -theme "/usr/share/rofi/themes/gruvbox-dark.rasi" -opacity="70" -display-drun " " -display-window " " -display-run " " -display-ssh " "
+bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -theme "/home/$USER/.cache/wal/colors-rofi-dark.rasi" -opacity="70" -display-drun " " -display-window " " -display-run " " -display-ssh " "
 
 bindsym $mod+Shift+d exec --no-startup-id `locate -e -i --regex "/home/$USER/[^\.]+" | rofi -dmenu -i | xargs -r -0 xdg-open`
 
@@ -163,20 +163,22 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 #  separator for bumblebee-status ".local/share/bumblebee-status/themes/icons/awesome-fonts.json"
 bar {
-        tray_output primary
-        status_command ~/.local/bin/bumblebee-status -m title cpu memory datetime nic battery brightness pasource pasink -p nic.states=^down nic.format={ip} datetime.format="%a, %d %b %Y %H:%M" datetime.locale="de_DE.UTF8" -t wal-powerline 
-      	font pango:Menlo for Powerline 10
-      	position top
-
 	     colors {
-        background $bg
+        background #00000000
         statusline $bg-alt
         separator  $bg-alt
 
-#                      border  backgr. text
-        focused_workspace  $fg-alt $fg-alt $fg
-        inactive_workspace $fg-alt $fg-alt $hg
+                           # border  backgr.   text
+        focused_workspace  #00000040  #AAAAAA40  #FFFFFF
+        active_workspace   #00000040  #AAAAAA40  #FFFFFF 
+        inactive_workspace #00000040  #00000040  #FFFFFF 
     }
+        i3bar_command i3bar -t
+        tray_output primary
+        status_command ~/.local/bin/bumblebee-status -m title cpu memory datetime battery brightness pasource pasink -p memory.usedonly=true datetime.format="%a, %d %b %Y %H:%M" datetime.locale="de_DE.UTF8" -t wal-powerline 
+      	font pango:Menlo for Powerline 10
+      	position top
+
 
 }
 
@@ -198,18 +200,20 @@ bindsym Print --release exec "scrot -s ~/Pictures/scrot/%d_%m_%y_%H_%M_%S_scrot.
 bindsym Shift+Print exec "scrot ~/Pictures/scrot/%d_%m_%y_%H_%M_%S_scrot.png -e 'xclip -selection c -t image/png < $f'"
 
 # Startup apps and settings
-exec --no-startup-id nm-applet &
-exec --no-startup-id blueman-applet &
+exec_always --no-startup-id nm-applet &
+exec_always --no-startup-id blueman-applet &
 exec ~/github/randomWallpaper.sh
 exec --no-startup-id xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id xinput set-prop "SYNA2393:00 06CB:7A13 Touchpad" "libinput Natural Scrolling Enabled" 1
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id slimbookbattery &
-exec --no-startup-id setxkbmap -option caps:none
+exec_always --no-startup-id slimbookbattery &
+exec_always --no-startup-id setxkbmap -option caps:swapescape
 exec --no-startup-id guake &
 exec --no-startup-id compton &
-exec --no-startup-id copyq &
+exec_always --no-startup-id copyq &
 exec --no-startup-id xbindkeys &
+exec_always --no-startup-id dunst -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "fg" -cf "$fg" -nf "$fg" -fn "ypn envypn 12" -s -geometry "400x60-10+40" -format "<b>%s</b>\n%b" -shrink  -lto 3 -nto 5 -cto 0 -align "left" -transparency 0 -padding 8 -horizontal_padding 8
+exec_always --no-startup-id /bin/bash `mkdir -pv $HOME/.config/zathura && $HOME/github/genzathurarc > $HOME/.config/zathura/zathurarc`
 
 # window gaps and other settings use xprop to get window info and set accordingly
 # get window info with xprop and add the setting here
@@ -223,6 +227,7 @@ for_window [class="(?i)lxappearance"] floating enable, resize set 600 400
 for_window [class="(?i)arandr"] floating enable, resize set 700 500
 for_window [class="(?i)gnome-calculator"] floating enable, resize set 300 400
 for_window [class="(?i)copyq"] floating enable, resize set 600 400
+for_window [class="(?i)nm-connection-editor"] floating enable, resize set 600 400
 for_window [class="(?i)cmake"] floating enable, resize set 600 800
 for_window [class="(?i)Skype"] floating enable, resize set 800 800, move to workspace 10
 for_window [title="(?i)WhatsApp"] floating enable, resize set 800 800, move to workspace 10
@@ -236,9 +241,11 @@ bindsym $mod+w exec --no-startup-id firefox
 bindsym $mod+f exec --no-startup-id thunar
 bindsym $mod+x exec ~/github/lockWithRandomWallpaper.sh
 bindsym $mod+Shift+s exec ~/officeSetup.sh
+bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Right move workspace to output right
 bindsym $mod+c exec code
 bindsym $mod+z exec ~/github/randomWallpaper.sh
 bindsym $mod+p exec ~/github/monitors.sh
 bindsym $mod+Shift+p exec ~/github/displaySelect.sh
 bindsym XF86Calculator exec --no-startup-id gnome-calculator
-bindsym $mod+t exec ~/github/stickyToggle.sh
+bindsym $mod+t exec sticky toggle

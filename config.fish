@@ -5,8 +5,8 @@ alias mv 'mv -vi'
 alias cp 'cp -v'
 alias r 'ranger'
 alias gs 'git status'
-alias gc 'git commit -am'
-alias ga 'git add -A'
+alias gc 'git commit'
+alias ga 'git add'
 alias gd 'git diff'
 
 # theme settings usign Oh-My-Fish
