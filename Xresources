@@ -38,8 +38,8 @@ URxvt.scrollStyle:          rxvt
 URxvt.scrollBar:            false
 
 ! Disable Ctrl+Shift popup
-!URxvt.iso14755: false
-!URxvt.iso14755_52: false
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 ! Perl extensions tabbed rxvt
 URxvt.perl-ext-common:      default,matcher,font-size

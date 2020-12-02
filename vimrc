@@ -3,6 +3,7 @@ set exrc " use vim config in vi
 set secure " doesn't allow other users to write in vimrc
 set incsearch " incremental serach
 set hlsearch " no highlights in serach
+set ignorecase "ignores case while searching
 set tabstop=2 " set tab to 2 space width
 set shiftwidth=2 " convert tabs to 2 spaces
 set noswapfile " no need to create swap file it may slow the computer
@@ -15,6 +16,7 @@ set si " substitute command for bracket sub
 set smartcase " pattern for search
 syntax enable " enables syntax highlighting
 filetype plugin on
+colorscheme desert
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -34,7 +36,7 @@ call plug#begin('~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'preservim/tagbar'
 Plug 'Townk/vim-autoclose'
-Plug 'preserv/nerdcommenter' " add comments in file
+Plug 'preservim/nerdcommenter' " add comments in file
 Plug 'terryma/vim-multiple-cursors' " multiple cursor
 Plug 'junegunn/fzf.vim' " fuzzy search
 Plug 'tpope/vim-surround' " surround with braces or punctuation
@@ -50,5 +52,8 @@ let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 
 " Kye bindings
 nmap <F6> :NERDTreeToggle<CR>
+nmap <F4> :TagbarToggle<CR>
+
 " air-line
 let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled = 1
