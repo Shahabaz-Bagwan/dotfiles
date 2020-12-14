@@ -1,11 +1,12 @@
 # aliases 
-alias la 'll -a'
+alias la 'ls -AlhN --color=auto --group-directories-first'
+alias ll 'ls -lhN --color=auto --group-directories-first'
 alias rm 'rm -vI'
 alias mv 'mv -vi'
 alias cp 'cp -v'
 alias r 'ranger'
 alias gs 'git status'
-alias gc 'git commit'
+alias gc 'git commit -m'
 alias ga 'git add'
 alias gd 'git diff'
 

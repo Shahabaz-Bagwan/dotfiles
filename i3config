@@ -49,7 +49,7 @@ client.background $bg
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec rxvt-unicode
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
