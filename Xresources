@@ -56,6 +56,13 @@ URxvt.cursorUnderline:      false
 ! Pointer
 URxvt.pointerBlank:         true
 
+dwm.normbgcolor : color0
+dwm.normbordercolor : color0
+dwm.normfgcolor:color4
+dwm.selfgcolor: color0
+dwm.selbordercolor : color8
+dwm.selbgcolor:color4
+
 *background:   #ffffff
 *foreground:   #eff0eb
 *cursorColor:  #9aedfe

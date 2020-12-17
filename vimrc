@@ -25,7 +25,7 @@ filetype plugin on
 colorscheme desert
 set title
 set bg=light
-set mouse=a
+"set mouse=a " insted use SHIFT+ctrl+C and shift+ctrl+V for copy and paste
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 	set splitbelow splitright
 

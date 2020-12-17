@@ -10,8 +10,13 @@ alias gc 'git commit -m'
 alias ga 'git add'
 alias gd 'git diff'
 
+# Defaults
+export EDITOR="/usr/local/bin/vim"
+export VISUAL="$EDITOR"
+export TERMINAL="/usr/local/bin/st"
+
 # theme settings usign Oh-My-Fish
-set -g theme_color_scheme light
+set -g theme_color_scheme dark
 set -g theme_date_timezone Europe/Berlin
 set -g theme_nerd_fonts yes
 set -g theme_powerline_fonts no
