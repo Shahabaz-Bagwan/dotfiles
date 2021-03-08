@@ -63,6 +63,8 @@ dwm.selfgcolor: color0
 dwm.selbordercolor : color8
 dwm.selbgcolor:color4
 
+*alpha: 0.7
+
 *background:   #ffffff
 *foreground:   #eff0eb
 *cursorColor:  #9aedfe

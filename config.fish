@@ -9,6 +9,10 @@ alias gs 'git status'
 alias gc 'git commit -m'
 alias ga 'git add'
 alias gd 'git diff'
+alias installer 'sudo apt install'
+alias autoremove 'sudo apt autoremove -yy'
+alias uninstaller 'sudo apt remove'
+alias updater 'sudo apt update; sudo apt upgrade -yy'
 
 # Defaults
 export EDITOR="/usr/local/bin/vim"

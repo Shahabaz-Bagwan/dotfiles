@@ -13,7 +13,7 @@ set ai " auto indent when typing
 set nofoldenable " no fold when opening files
 set fdm=syntax " fold according to syntax
 set si " substitute command for bracket sub
-set smartcase " pattern for search
+"set smartcase " pattern for search
 set nocp " no compatible 
 set wildmode=longest,list,full
 
@@ -27,7 +27,7 @@ set title
 set bg=light
 "set mouse=a " insted use SHIFT+ctrl+C and shift+ctrl+V for copy and paste
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
-	set splitbelow splitright
+set splitbelow splitright
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
