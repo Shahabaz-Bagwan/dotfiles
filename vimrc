@@ -47,10 +47,17 @@ call plug#begin('~/.vim/plugged')
 " Declare the list of plugins.
 Plug 'preservim/tagbar'
 Plug 'Townk/vim-autoclose'
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'aklt/plantuml-Syntax' " plantuml syntax highlight 
+Plug 'tyru/open-browser.vim' " opens browser 
 Plug 'djoshea/vim-autoread' "reloads current open file if there are changes
 Plug 'preservim/nerdcommenter' " add comments in file
 Plug 'terryma/vim-multiple-cursors' " multiple cursor
 Plug 'junegunn/fzf.vim' " fuzzy search
+Plug 'sharkdp/bat' " requirement for fzf
+Plug 'BurntSushi/ripgrep' " requirement for fzf
+Plug 'ggreer/the_silver_searcher' " requirement for fzf
+Plug 'dandavison/delta' " requirement for fzf
 Plug 'tpope/vim-surround' " surround with braces or punctuation
 Plug 'scrooloose/nerdtree' " tree explorer
 Plug 'bling/vim-airline' " vim-statusbar theme
@@ -66,16 +73,25 @@ let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 " Kye bindings
 nmap <F6> :NERDTreeToggle<CR>
 nmap <F4> :TagbarToggle<CR>
+
 " changes all occurance of a word under cursor
 ":%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <F8> :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+
 " toggles list
 nnoremap <F3> :set list!<CR>
+
+" NerdTree
+"let g:netrw_browsex_viewer=firefox
+
+" preview plantUML
+nnoremap <F1> :PlantumlOpen<CR>
+
 " Shortcutting split navigation, saving a keypress:
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
+  map <C-h> <C-w>h
+  map <C-j> <C-w>j
+  map <C-k> <C-w>k
+  map <C-l> <C-w>l
 
 " air-line
 let g:airline_powerline_fonts=1

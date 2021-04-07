@@ -9,9 +9,10 @@ alias gs 'git status'
 alias gc 'git commit -m'
 alias ga 'git add'
 alias gd 'git diff'
-alias installer 'sudo apt install'
+alias installer 'sudo apt install -yy'
 alias autoremove 'sudo apt autoremove -yy'
 alias uninstaller 'sudo apt remove'
+alias purger 'sudo apt remove --purge -yy'
 alias updater 'sudo apt update; sudo apt upgrade -yy'
 
 # Defaults

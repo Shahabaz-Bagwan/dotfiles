@@ -1,7 +1,14 @@
 #!/bin/bash
-EXTERNAL_OUTPUT="DP1-1"
-EXTERNAL_OUTPUT2="DP1-2"
-INTERNAL_OUTPUT="eDP1"
+
+# Get all possible displays
+allposs=$(xrandr -q | grep "connected")
+
+# Get all connected screens.
+screens=$(echo "$allposs" | awk '/ connected/ {print $1}')
+
+EXTERNAL_OUTPUT=$(echo $screens | awk '1 {print $2}')
+EXTERNAL_OUTPUT2=$(echo $screens | awk '1 {print $3}')
+INTERNAL_OUTPUT=$(echo $screens | awk '1 {print $1}')
 
 # if we don't have a file, start at zero
 if [ ! -f "/tmp/monitor_mode.dat" ] ; then
@@ -26,3 +33,5 @@ else
         xrandr --output $INTERNAL_OUTPUT --auto --primary --output $EXTERNAL_OUTPUT2 --auto --left-of $INTERNAL_OUTPUT --output $EXTERNAL_OUTPUT --auto --left-of $EXTERNAL_OUTPUT2
 fi
 echo "${monitor_mode}" > /tmp/monitor_mode.dat
+
+exit 0
