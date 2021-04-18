@@ -9,18 +9,18 @@
 #
 # If there is already a running instance, user will be prompted to end it.
 
-updateicon() { \
-	echo "$1" > /tmp/recordingicon
-	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
-	}
+#updateicon() { \
+	#echo "$1" > /tmp/recordingicon
+	#pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
+	#}
 
 killrecording() {
 	recpid="$(cat /tmp/recordingpid)"
 	# kill with SIGTERM, allowing finishing touches.
 	kill -15 "$recpid"
 	rm -f /tmp/recordingpid
-	updateicon ""
-	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
+	#updateicon ""
+	#pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
 	# even after SIGTERM, ffmpeg may still run, so SIGKILL it.
 	sleep 3
 	kill -9 "$recpid"
@@ -38,7 +38,7 @@ screencast() { \
  	-c:v h264 -crf 0 -preset ultrafast -c:a aac \
 	"$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
 	echo $! > /tmp/recordingpid
-	updateicon ""
+	#updateicon ""
        	}
 
 video() { ffmpeg \
@@ -48,25 +48,31 @@ video() { ffmpeg \
  	-c:v libx264 -qp 0 -r 30 \
 	"$HOME/video-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon ""
+	#updateicon ""
 	}
 
 webcamhidef() { ffmpeg \
 	-f v4l2 \
+  -framerate 30 \
+  -input_format mjpeg \
 	-i /dev/video0 \
-	-video_size 1920x1080 \
+	-video_size 1280x720 \
+  -c:v copy \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon ""
+	#updateicon ""
 	}
 
 webcam() { ffmpeg \
 	-f v4l2 \
+  -framerate 30 \
+  -input_format mjpeg \
 	-i /dev/video0 \
 	-video_size 640x480 \
+  -c:v copy \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon ""
+	#updateicon ""
 	}
 
 
@@ -76,7 +82,7 @@ audio() { \
 	-c:a flac \
 	"$HOME/audio-$(date '+%y%m%d-%H%M-%S').flac" &
 	echo $! > /tmp/recordingpid
-	updateicon ""
+	#updateicon ""
 	}
 
 askrecording() { \
@@ -110,7 +116,7 @@ videoselected()
 	-c:v libx264 -qp 0 -r 30 \
 	"$HOME/box-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon ""
+	#updateicon ""
 }
 
 case "$1" in
