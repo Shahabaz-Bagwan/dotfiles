@@ -20,7 +20,7 @@ echo "change shell to fish shell...."
 sudo chsh -s /usr/bin/fish $USER
 
 echo "Getting configs from git and setting them...."
-git clone https://github.com/falconSB/dotfiles.git ~/github
+git clone https://github.com/shahabaz-bagwan/dotfiles.git ~/github
 
 echo "Installing correct fonts...."
 if [ -d "$HOME/.fonts" ]; then
@@ -56,7 +56,7 @@ ln -sf $HOME/github/Xresources $HOME/.Xresources
 xrdb -merge $HOME/.Xresources
 ln -sf $HOME/github/xbindkeysrc $HOME/.xbindkeysrc
 
-git clone https://github.com/falconSB/wallpapers.git $HOME/Pictures/wallpapers
+git clone https://github.com/shahabaz-bagwan/wallpapers.git $HOME/Pictures/wallpapers
 mkdir $HOME/Pictures/scrot
 
 touch $HOME/scrp.sh
