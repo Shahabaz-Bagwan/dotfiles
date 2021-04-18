@@ -98,7 +98,7 @@ askrecording() { \
 	}
 
 asktoend() { \
-	response=$(printf "No\\nYes" | dmenu -i -p "Recording still active. End recording?") &&
+	response=$(printf "No\\nYes" | rofi -dmenu -i -p "Recording still active. End recording?") &&
 	[ "$response" = "Yes" ] &&  killrecording
 	}
 
