@@ -11,4 +11,7 @@ WALLPAPER1=`printf "%s\n" "${FILES[RANDOM % ${#FILES[@]}]}"`
 feh --bg-fill "$WALLPAPER" 
 #--bg-fill "$WALLPAPER1"
 wal -ni "$WALLPAPER"
+# restart i3 to reload colors
 i3 restart
+# loadxrdb shortcut in dwm to load colors
+xdotool key Super_L+F5
