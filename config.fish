@@ -1,6 +1,15 @@
+# My fish configs
+
+source ~/.local/share/icons-in-terminal/icons.fish
+#https://github.com/Yash-Handa/logo-ls/releases
+
 # aliases 
-alias la 'ls -AlhN --color=auto --group-directories-first'
-alias ll 'ls -lhN --color=auto --group-directories-first'
+#alias la 'ls -AlhN --color=auto --group-directories-first'
+#alias ll 'ls -lhN --color=auto --group-directories-first'
+
+alias la 'logo-ls -A'
+alias ll 'logo-ls -lh'
+alias ls 'logo-ls'
 alias rm 'rm -vI'
 alias mv 'mv -vi'
 alias cp 'cp -v'

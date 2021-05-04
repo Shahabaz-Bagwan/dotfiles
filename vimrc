@@ -16,6 +16,7 @@ set si " substitute command for bracket sub
 "set smartcase " pattern for search
 set nocp " no compatible 
 set wildmode=longest,list,full
+set spell spelllang=en_us
 
 " shows white spacing
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
@@ -86,6 +87,8 @@ nnoremap <F3> :set list!<CR>
 
 " preview plantUML
 nnoremap <F1> :PlantumlOpen<CR>
+nmap <silent> <Leader><F1> :PlantumlStart<CR> 
+
 
 " Shortcutting split navigation, saving a keypress:
   map <C-h> <C-w>h
@@ -98,7 +101,10 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
 
 " autocmd for special files
-autocmd BufWritePost ~/git/dwmblocks/config.h !cd ~/git/dwmblocks/; sudo make install; killall -q dwmblocks; setsid dwmblocks &
+autocmd BufWritePost ~/repos/dwmblocks/config.h !cd ~/repos/dwmblocks/; sudo make install; killall -q dwmblocks; setsid dwmblocks &
+
+map <leader>vimrc :tabe ~/.vimrc<cr>
+autocmd BufWritePost ~/.vimrc source $MYVIMRC 
 
 " Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
 if &diff
