@@ -16,7 +16,7 @@ set si " substitute command for bracket sub
 "set smartcase " pattern for search
 set nocp " no compatible 
 set wildmode=longest,list,full
-set spell spelllang=en_us
+"set spell spelllang=en_us
 
 " shows white spacing
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣

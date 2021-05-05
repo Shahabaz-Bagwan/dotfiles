@@ -7,6 +7,8 @@ source ~/.local/share/icons-in-terminal/icons.fish
 #alias la 'ls -AlhN --color=auto --group-directories-first'
 #alias ll 'ls -lhN --color=auto --group-directories-first'
 
+alias cmakeClean 'cmake --build . --target clean'
+alias cmakeBuild 'cmake --build . --target '
 alias la 'logo-ls -A'
 alias ll 'logo-ls -lh'
 alias ls 'logo-ls'
