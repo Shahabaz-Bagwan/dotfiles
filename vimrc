@@ -102,6 +102,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 " autocmd for special files
 autocmd BufWritePost ~/repos/dwmblocks/config.h !cd ~/repos/dwmblocks/; sudo make install; killall -q dwmblocks; setsid dwmblocks &
+au BufWritePost *.tex silent! execute "!pdflatex % >/dev/null 2>&1" | redraw!
 
 map <leader>vimrc :tabe ~/.vimrc<cr>
 autocmd BufWritePost ~/.vimrc source $MYVIMRC 
