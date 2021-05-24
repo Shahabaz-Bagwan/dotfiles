@@ -38,11 +38,6 @@ abbr uninstaller 'sudo apt remove'
 abbr purger 'sudo apt remove --purge -yy'
 abbr updater 'sudo apt update; sudo apt upgrade -yy'
 
-# Defaults
-export EDITOR="/usr/local/bin/vim"
-export VISUAL="$EDITOR"
-export TERMINAL="/usr/local/bin/st"
-
 # theme settings usign Oh-My-Fish
 set -g theme_color_scheme dark
 set -g theme_date_timezone Europe/Berlin
