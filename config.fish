@@ -16,7 +16,7 @@ source ~/.local/share/icons-in-terminal/icons.fish
 abbr cmakeClean 'cmake --build . --target clean'
 abbr cmakeConfigRel 'cmake -DCMAKE_BUILD_TYPE=Release ..'
 abbr cmakeBuildRel 'cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Release ..; cmake --build . --config Release --parallel --target'
-abbr cmakeBuildDeb 'cmake -DCMAKE_BUILD_TYPE=Debug ..; cmake --build . --config Debug --parallel --target'
+abbr cmakeBuildDeb 'cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Debug ..; cmake --build . --config Debug --parallel --target'
 abbr c 'clear'
 abbr x 'exit'
 abbr la 'logo-ls -A'
