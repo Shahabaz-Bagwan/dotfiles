@@ -61,6 +61,7 @@ Plug 'ggreer/the_silver_searcher' " requirement for fzf
 Plug 'dandavison/delta' " requirement for fzf
 Plug 'tpope/vim-surround' " surround with braces or punctuation
 Plug 'scrooloose/nerdtree' " tree explorer
+Plug 'vim-latex/vim-latex' " latex tools for vim
 Plug 'bling/vim-airline' " vim-statusbar theme
 Plug 'valloric/youcompleteme' " auto-complete in vim
 Plug 'ap/vim-css-color' " shows color of css codes
