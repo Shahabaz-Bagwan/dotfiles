@@ -83,6 +83,9 @@ nnoremap <F8> :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 " toggles list
 nnoremap <F3> :set list!<CR>
 
+" run python file
+nnoremap <F5> :!python3 %<CR>
+
 " NerdTree
 "let g:netrw_browsex_viewer=firefox
 
