@@ -66,6 +66,7 @@ Plug 'bling/vim-airline' " vim-statusbar theme
 Plug 'valloric/youcompleteme' " auto-complete in vim
 Plug 'ap/vim-css-color' " shows color of css codes
 Plug 'editorconfig/editorconfig-vim' " uses the formatter from project
+Plug 'Chiel92/vim-autoformat'
 " List ends here. Plugins become visible to Vim after this call.
 
 call plug#end()
@@ -86,6 +87,13 @@ nnoremap <F3> :set list!<CR>
 " run python file
 nnoremap <F5> :!python3 %<CR>
 
+" runs code formatter plug-in 
+noremap <F3> :Autoformat<CR>
+
+" run clangFormat on slected text
+map <C-K> :pyf </usr/share/clang/clang-format-10/clang-format.py<cr> 
+imap <C-K> <c-o> :pyf </usr/share/clang/clang-format-10/clang-format.py<cr> 
+
 " NerdTree
 "let g:netrw_browsex_viewer=firefox
 
@@ -105,8 +113,21 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
 
 " autocmd for special files
-autocmd BufWritePost ~/repos/dwmblocks/config.h !cd ~/repos/dwmblocks/; sudo make install; killall -q dwmblocks; setsid dwmblocks &
+autocmd BufWritePost ~/repos/dwmblocks/config.h !cd ~/repos/dwmblocks/;make clean; make; killall -q dwmblocks; setsid dwmblocks &
+
 au BufWritePost *.tex silent! execute "!pdflatex % >/dev/null 2>&1" | redraw!
+
+"let g:autoformat_autoindent = 0
+"let g:autoformat_retab = 0
+"let g:autoformat_remove_trailing_spaces = 0
+
+au BufWritePre *.py :Autoformat
+
+function! Formatonsave()
+  let l:formatdiff = 1
+  pyf ~/llvm/tools/clang/tools/clang-format/clang-format.py
+endfunction
+autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
 
 map <leader>vimrc :tabe ~/.vimrc<cr>
 autocmd BufWritePost ~/.vimrc source $MYVIMRC 
