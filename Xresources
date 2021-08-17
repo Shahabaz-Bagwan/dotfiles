@@ -56,12 +56,6 @@ URxvt.cursorUnderline:      false
 ! Pointer
 URxvt.pointerBlank:         true
 
-dwm.normbgcolor : color0
-dwm.normbordercolor : color0
-dwm.normfgcolor:color4
-dwm.selfgcolor: color0
-dwm.selbordercolor : color8
-dwm.selbgcolor:color4
 
 *alpha: 0.7
 
@@ -88,3 +82,10 @@ dwm.selbgcolor:color4
 *color15:     #eff0eb
 !*color7:      #eff0eb
 !*color15:     #eff0eb
+
+dwm.normbgcolor : color0
+dwm.normbordercolor : color0
+dwm.normfgcolor:color4
+dwm.selfgcolor: color0
+dwm.selbordercolor : color8
+dwm.selbgcolor:color4

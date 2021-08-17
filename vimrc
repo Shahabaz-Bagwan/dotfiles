@@ -67,11 +67,16 @@ Plug 'valloric/youcompleteme' " auto-complete in vim
 Plug 'ap/vim-css-color' " shows color of css codes
 Plug 'editorconfig/editorconfig-vim' " uses the formatter from project
 Plug 'Chiel92/vim-autoformat'
+Plug 'ilyachur/cmake4vim'
+
 " List ends here. Plugins become visible to Vim after this call.
 
 call plug#end()
+
 let mapleader=","
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
+let g:cmake_build_dir="build"
+let g:cmake_usr_args="--parallel"
 
 " Kye bindings
 nmap <F6> :NERDTreeToggle<CR>
@@ -115,7 +120,7 @@ let g:airline#extensions#tabline#enabled = 1
 " autocmd for special files
 autocmd BufWritePost ~/repos/dwmblocks/config.h !cd ~/repos/dwmblocks/;make clean; make; killall -q dwmblocks; setsid dwmblocks &
 
-au BufWritePost *.tex silent! execute "!pdflatex % >/dev/null 2>&1" | redraw!
+au BufWritePost *.tex silent! !pdflatex % >/dev/null 2>&1; redraw!
 
 "let g:autoformat_autoindent = 0
 "let g:autoformat_retab = 0
