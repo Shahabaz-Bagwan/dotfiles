@@ -1,3 +1,10 @@
+# install ble.sh for fish like autocompletion 
+# https://github.com/akinomyoga/ble.sh/
+# Add this lines at the top of .bashrc:
+[[ $- == *i* ]] && source ~/repos/ble.sh/out/ble.sh --noattach
+
+# Enabling some shell options
+shopt -s autocd cdspell
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -94,9 +101,42 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+#alias ll='ls -alF'
+#alias la='ls -A'
+#alias l='ls -CF'
+alias cmakeClean='cmake --build . --target clean'
+alias cmakeConfigRel='cmake -DCMAKE_BUILD_TYPE=Release ..'
+alias cmakeBuildRel='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Release ..; cmake --build . --config Release --parallel --target'
+alias cmakeBuild='cmake --build . --parallel --target'
+alias cmakeBuildDeb='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Debug ..; cmake --build . --config Debug --parallel --target'
+alias c='clear'
+alias q='exit'
+alias la='logo-ls -A'
+alias ll='logo-ls -lh'
+alias ls='logo-ls'
+alias rm='rm -vI'
+alias mv='mv -vi'
+alias cp='cp -v'
+alias r='ranger'
+alias gs='git status'
+alias gc='git commit -m'
+alias gcl='git clone '
+alias ga='git add'
+alias gaa='git add -A'
+alias gap='git add -p'
+alias gp='git push'
+alias gpl='git pull'
+alias gpla='git pull --all --tags'
+alias gd='git diff'
+alias gr='git remote'
+alias grv='git remote -v'
+alias grs='git remote set-url origin'
+alias gra='git remote add origin'
+alias installer='sudo apt install -yy'
+alias autoremove='sudo apt autoremove -yy'
+alias uninstaller='sudo apt remove'
+alias purger='sudo apt remove --purge -yy'
+alias updater='sudo apt update; sudo apt upgrade -yy'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -122,25 +162,23 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# install agnoster theme from git
+# https://github.com/speedenator/agnoster-bash
 export THEME=$HOME/.bash/themes/agnoster-bash/agnoster.bash
 if [[ -f $THEME ]]; then
    export DEFAULT_USER=`whoami`
    source $THEME
 fi
 
-#source ~/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
-#bind -x '"\t": fzf_bash_completion'
-
-# bashrc
-
-# Add this lines at the top of .bashrc:
-[[ $- == *i* ]] && source ~/repos/ble.sh/out/ble.sh --noattach
-
-# your bashrc settings come here...
-
-# Add this line at the end of .bashrc:
-[[ ${BLE_VERSION-} ]] && ble-attach
-
 set editing-mode=vi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export TERMINAL="/usr/local/bin/st"
+export EDITOR="/usr/bin/vim"
+export SUDO_ASKPASS="/usr/bin/ssh-askpass"
+export VISUAL=$EDITOR
+export RANGER_LOAD_DEFAULT_RC=FALSE
+
+# Add this line at the end of .bashrc:
+[[ ${BLE_VERSION-} ]] && ble-attach
