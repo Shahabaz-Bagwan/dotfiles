@@ -170,7 +170,7 @@ if [[ -f $THEME ]]; then
    source $THEME
 fi
 
-set editing-mode=vi
+set -o vi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
