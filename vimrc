@@ -54,6 +54,7 @@ Plug 'tyru/open-browser.vim' " opens browser
 Plug 'djoshea/vim-autoread' "reloads current open file if there are changes
 Plug 'preservim/nerdcommenter' " add comments in file
 Plug 'terryma/vim-multiple-cursors' " multiple cursor
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' " fuzzy search
 Plug 'sharkdp/bat' " requirement for fzf
 Plug 'BurntSushi/ripgrep' " requirement for fzf
@@ -76,6 +77,8 @@ call plug#end()
 let mapleader=","
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 let g:cmake_build_dir="build"
+let g:cmake_compile_commands="1"
+let g:cmake_compile_commands_link="build/compile_commands.json"
 let g:cmake_usr_args="--parallel"
 
 " Kye bindings

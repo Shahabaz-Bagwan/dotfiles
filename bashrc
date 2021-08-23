@@ -4,7 +4,7 @@
 [[ $- == *i* ]] && source ~/repos/ble.sh/out/ble.sh --noattach
 
 # Enabling some shell options
-shopt -s autocd cdspell
+shopt -s autocd cdspell dirspell direxpand
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -170,7 +170,7 @@ if [[ -f $THEME ]]; then
    source $THEME
 fi
 
-set -o vi
+set +o vi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
