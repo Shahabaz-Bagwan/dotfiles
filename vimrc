@@ -37,7 +37,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 if has("gui_running")
-  set guifont=Inconsolata\ Nerd\ Font\ Mono\ 12
+  set guifont=UbuntuMono\ Nerd\ Font\ Mono\ 12
   colorscheme evening
 endif
 
@@ -96,7 +96,7 @@ nnoremap <F3> :set list!<CR>
 nnoremap <F5> :!python3 %<CR>
 
 " runs code formatter plug-in 
-noremap <F3> :Autoformat<CR>
+noremap <F4> :Autoformat<CR>
 
 " run clangFormat on slected text
 map <C-K> :pyf </usr/share/clang/clang-format-10/clang-format.py<cr> 
