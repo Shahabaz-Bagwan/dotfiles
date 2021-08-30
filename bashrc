@@ -3,8 +3,11 @@
 # Add this lines at the top of .bashrc:
 [[ $- == *i* ]] && source ~/repos/ble.sh/out/ble.sh --noattach
 
+bind '"\M-l": alias-expand-line'
+
 # Enabling some shell options
 shopt -s autocd cdspell dirspell direxpand
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
