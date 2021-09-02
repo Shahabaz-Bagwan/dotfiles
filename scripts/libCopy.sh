@@ -4,5 +4,5 @@ do
   if [[ $i == "/lib/"* ||  $i == "/usr/lib/"* ]]; then
     continue
   fi
-cp $i . 
+cp $i $2 
 done
