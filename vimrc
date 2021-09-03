@@ -4,8 +4,8 @@ set secure " doesn't allow other users to write in vimrc
 set incsearch " incremental serach
 set hlsearch " no highlights in serach
 set ignorecase "ignores case while searching
-set tabstop=2 " set tab to 2 space width
-set shiftwidth=2 " convert tabs to 2 spaces
+set tabstop=4 " set tab to 4 space width
+set shiftwidth=4 " convert tabs to 4 spaces
 set noswapfile " no need to create swap file it may slow the computer
 set smarttab " sets tabs according to tabstop
 set softtabstop=0 expandtab " similar to tabstop but in local buffer
