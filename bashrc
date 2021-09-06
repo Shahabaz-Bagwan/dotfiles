@@ -1,10 +1,3 @@
-# install ble.sh for fish like autocompletion 
-# https://github.com/akinomyoga/ble.sh/
-# Add this lines at the top of .bashrc:
-[[ $- == *i* ]] && source ~/repos/ble.sh/out/ble.sh --noattach
-
-bind '"\M-l": alias-expand-line'
-
 # Enabling some shell options
 shopt -s autocd cdspell dirspell direxpand
 
@@ -183,5 +176,7 @@ export SUDO_ASKPASS="/usr/bin/ssh-askpass"
 export VISUAL=$EDITOR
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
-# Add this line at the end of .bashrc:
-[[ ${BLE_VERSION-} ]] && ble-attach
+
+source $HOME/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
+bind -x '"\t": fzf_bash_completion'
+bind '"\C-l": alias-expand-line'

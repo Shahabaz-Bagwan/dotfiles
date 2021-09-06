@@ -2,10 +2,13 @@ set nu rnu " relative line numbers
 set exrc " use vim config in vi
 set secure " doesn't allow other users to write in vimrc
 set incsearch " incremental serach
+set hidden " keep a buffer open in bg 
+set scrolloff=8 " start scrolling before end of page
 set hlsearch " no highlights in serach
 set ignorecase "ignores case while searching
 set tabstop=4 " set tab to 4 space width
 set shiftwidth=4 " convert tabs to 4 spaces
+set expandtab " expands tab
 set noswapfile " no need to create swap file it may slow the computer
 set smarttab " sets tabs according to tabstop
 set softtabstop=0 expandtab " similar to tabstop but in local buffer
@@ -13,10 +16,10 @@ set ai " auto indent when typing
 set nofoldenable " no fold when opening files
 set fdm=syntax " fold according to syntax
 set si " substitute command for bracket sub
-"set smartcase " pattern for search
 set nocp " no compatible 
 set wildmode=longest,list,full
 "set spell spelllang=en_us
+set path+=** " Provides tab-completion
 
 " shows white spacing
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
@@ -25,7 +28,7 @@ syntax enable " enables syntax highlighting
 filetype plugin on
 colorscheme desert
 set title
-set bg=light
+set bg=dark
 "set mouse=a " insted use SHIFT+ctrl+C and shift+ctrl+V for copy and paste
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 set splitbelow splitright
@@ -46,27 +49,18 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
-Plug 'preservim/tagbar'
 Plug 'Townk/vim-autoclose'
-Plug 'weirongxu/plantuml-previewer.vim'
-Plug 'aklt/plantuml-Syntax' " plantuml syntax highlight 
-Plug 'tyru/open-browser.vim' " opens browser 
 Plug 'djoshea/vim-autoread' "reloads current open file if there are changes
 Plug 'preservim/nerdcommenter' " add comments in file
-Plug 'terryma/vim-multiple-cursors' " multiple cursor
+Plug 'bling/vim-airline' " vim-statusbar theme
+Plug 'ap/vim-css-color' " shows color of css codes
+Plug 'editorconfig/editorconfig-vim' " uses the formatter from project
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' " fuzzy search
 Plug 'sharkdp/bat' " requirement for fzf
 Plug 'BurntSushi/ripgrep' " requirement for fzf
 Plug 'ggreer/the_silver_searcher' " requirement for fzf
 Plug 'dandavison/delta' " requirement for fzf
-Plug 'tpope/vim-surround' " surround with braces or punctuation
-Plug 'scrooloose/nerdtree' " tree explorer
-Plug 'vim-latex/vim-latex' " latex tools for vim
-Plug 'bling/vim-airline' " vim-statusbar theme
-Plug 'valloric/youcompleteme' " auto-complete in vim
-Plug 'ap/vim-css-color' " shows color of css codes
-Plug 'editorconfig/editorconfig-vim' " uses the formatter from project
 Plug 'Chiel92/vim-autoformat'
 Plug 'ilyachur/cmake4vim'
 
@@ -75,15 +69,47 @@ Plug 'ilyachur/cmake4vim'
 call plug#end()
 
 let mapleader=","
-let g:ycm_global_ycm_extra_conf="~/.vim/.ycm_extra_conf.py"
 let g:cmake_build_dir="build"
 let g:cmake_compile_commands="1"
 let g:cmake_compile_commands_link="build/compile_commands.json"
 let g:cmake_usr_args="--parallel"
+let g:netrw_banner=0
+let g:netrw_liststyle=3
+
+" create tags
+command! MakeTags !ctags -R . 
+
+" once tha tags are generated you can jump the tags with
+" ^] to jump to tag under cursor
+"  g^] for ambiguous tags
+" ^t jump back the tag stack
+"
+" or complete the text with ^x^n just this file, ^x^f filenames,
+" ^x^] for tags only, ^n for anything
+"
+"
 
 " Kye bindings
-nmap <F6> :NERDTreeToggle<CR>
-nmap <F4> :TagbarToggle<CR>
+let g:NetrwIsOpen=0
+let g:netrw_winsize=20
+
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Lexplore
+    endif
+endfunction
+
+noremap <silent> <F6> :call ToggleNetrw()<CR>
 
 " changes all occurance of a word under cursor
 ":%s/\<<C-r><C-w>\>//g<Left><Left>
@@ -102,19 +128,11 @@ noremap <F4> :Autoformat<CR>
 map <C-K> :pyf </usr/share/clang/clang-format-10/clang-format.py<cr> 
 imap <C-K> <c-o> :pyf </usr/share/clang/clang-format-10/clang-format.py<cr> 
 
-" NerdTree
-"let g:netrw_browsex_viewer=firefox
-
-" preview plantUML
-nnoremap <F1> :PlantumlOpen<CR>
-nmap <silent> <Leader><F1> :PlantumlStart<CR> 
-
-
 " Shortcutting split navigation, saving a keypress:
-  map <C-h> <C-w>h
-  map <C-j> <C-w>j
-  map <C-k> <C-w>k
-  map <C-l> <C-w>l
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " air-line
 let g:airline_powerline_fonts=1
@@ -124,10 +142,6 @@ let g:airline#extensions#tabline#enabled = 1
 autocmd BufWritePost ~/repos/dwmblocks/config.h !cd ~/repos/dwmblocks/;make clean; make; killall -q dwmblocks; setsid dwmblocks &
 
 au BufWritePost *.tex silent! !pdflatex % >/dev/null 2>&1; redraw!
-
-"let g:autoformat_autoindent = 0
-"let g:autoformat_retab = 0
-"let g:autoformat_remove_trailing_spaces = 0
 
 au BufWritePre *.py :Autoformat
 
