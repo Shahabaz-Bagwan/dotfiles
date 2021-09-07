@@ -13,3 +13,7 @@ aufgefallen:
 Schlachten: 
 Überraschung: 
 zusammensetzen: 
+aufwerfen: 
+beheben: 
+erzeugen: 
+durchschleifen: 
