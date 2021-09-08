@@ -4,7 +4,7 @@ set secure " doesn't allow other users to write in vimrc
 set incsearch " incremental serach
 set hidden " keep a buffer open in bg 
 set scrolloff=8 " start scrolling before end of page
-set hlsearch " no highlights in serach
+set nohlsearch " no highlights in serach
 set ignorecase "ignores case while searching
 set tabstop=4 " set tab to 4 space width
 set shiftwidth=4 " convert tabs to 4 spaces
@@ -25,7 +25,7 @@ set path+=** " Provides tab-completion
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 syntax enable " enables syntax highlighting
-filetype plugin on
+filetype plugin  indent on
 colorscheme desert
 set title
 set bg=dark
@@ -84,10 +84,10 @@ command! MakeTags !ctags -R .
 "  g^] for ambiguous tags
 " ^t jump back the tag stack
 "
-" or complete the text with ^x^n just this file, ^x^f filenames,
-" ^x^] for tags only, ^n for anything
-"
-"
+" or complete the text with ^x^n just this file,
+" ^x^f filenames,
+" ^x^] for tags only,
+" ^n for anything
 
 " Kye bindings
 let g:NetrwIsOpen=0
