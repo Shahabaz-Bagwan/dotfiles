@@ -6,20 +6,23 @@ set hidden " keep a buffer open in bg
 set scrolloff=8 " start scrolling before end of page
 set nohlsearch " no highlights in serach
 set ignorecase "ignores case while searching
-set tabstop=4 " set tab to 4 space width
-set shiftwidth=4 " convert tabs to 4 spaces
-set expandtab " expands tab
+set tabstop=2 " set tab to 2 space width
+set shiftwidth=2 " convert tabs to 2 spaces
+set backspace=indent,eol,nostop
 set noswapfile " no need to create swap file it may slow the computer
 set smarttab " sets tabs according to tabstop
-set softtabstop=0 expandtab " similar to tabstop but in local buffer
+set softtabstop=0 " similar to tabstop but in local buffer
+set expandtab  " convert tabs to space
 set ai " auto indent when typing
 set nofoldenable " no fold when opening files
 set fdm=syntax " fold according to syntax
 set si " substitute command for bracket sub
 set nocp " no compatible 
 set wildmode=longest,list,full
-"set spell spelllang=en_us
+set spell
+set spelllang=en_us,de_de
 set path+=** " Provides tab-completion
+set complete=.,w,u,t,b,kspell
 
 " shows white spacing
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
@@ -49,12 +52,12 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
-Plug 'Townk/vim-autoclose'
+Plug 'Raimondi/delimitMate'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'djoshea/vim-autoread' "reloads current open file if there are changes
 Plug 'preservim/nerdcommenter' " add comments in file
 Plug 'bling/vim-airline' " vim-statusbar theme
 Plug 'ap/vim-css-color' " shows color of css codes
-Plug 'editorconfig/editorconfig-vim' " uses the formatter from project
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' " fuzzy search
 Plug 'sharkdp/bat' " requirement for fzf
@@ -79,17 +82,16 @@ let g:netrw_liststyle=3
 " create tags
 command! MakeTags !ctags -R . 
 
-" once tha tags are generated you can jump the tags with
+" once the tags are generated you can jump the tags with
 " ^] to jump to tag under cursor
 "  g^] for ambiguous tags
 " ^t jump back the tag stack
-"
 " or complete the text with ^x^n just this file,
-" ^x^f filenames,
+" ^x^f Filename,
 " ^x^] for tags only,
 " ^n for anything
 
-" Kye bindings
+" Key bindings
 let g:NetrwIsOpen=0
 let g:netrw_winsize=20
 
@@ -111,7 +113,7 @@ endfunction
 
 noremap <silent> <F6> :call ToggleNetrw()<CR>
 
-" changes all occurance of a word under cursor
+" changes all occurrence of a word under cursor
 ":%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <F8> :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
@@ -128,15 +130,17 @@ noremap <F4> :Autoformat<CR>
 map <C-K> :pyf </usr/share/clang/clang-format-10/clang-format.py<cr> 
 imap <C-K> <c-o> :pyf </usr/share/clang/clang-format-10/clang-format.py<cr> 
 
-" Shortcutting split navigation, saving a keypress:
+" Shortcut split navigation, saving a keypress:
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+map ; :
 
 " air-line
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
 
 " autocmd for special files
 autocmd BufWritePost ~/repos/dwmblocks/config.h !cd ~/repos/dwmblocks/;make clean; make; killall -q dwmblocks; setsid dwmblocks &
@@ -150,6 +154,8 @@ function! Formatonsave()
   pyf ~/llvm/tools/clang/tools/clang-format/clang-format.py
 endfunction
 autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab
+autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 expandtab
 
 map <leader>vimrc :tabe ~/.vimrc<cr>
 autocmd BufWritePost ~/.vimrc source $MYVIMRC 
