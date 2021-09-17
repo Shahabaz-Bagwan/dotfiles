@@ -8,7 +8,7 @@ set nohlsearch " no highlights in serach
 set ignorecase "ignores case while searching
 set tabstop=2 " set tab to 2 space width
 set shiftwidth=2 " convert tabs to 2 spaces
-set backspace=indent,eol,nostop
+set backspace=indent,eol,start " backspace deletes correctly
 set noswapfile " no need to create swap file it may slow the computer
 set smarttab " sets tabs according to tabstop
 set softtabstop=0 " similar to tabstop but in local buffer
@@ -145,7 +145,7 @@ let g:airline#extensions#tabline#show_buffers = 1
 " autocmd for special files
 autocmd BufWritePost ~/repos/dwmblocks/config.h !cd ~/repos/dwmblocks/;make clean; make; killall -q dwmblocks; setsid dwmblocks &
 
-au BufWritePost *.tex silent! !pdflatex % >/dev/null 2>&1; redraw!
+au BufWritePost *.tex silent! !pdflatex % >/dev/null 2>&1;
 
 au BufWritePre *.py :Autoformat
 
