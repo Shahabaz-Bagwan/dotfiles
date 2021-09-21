@@ -52,8 +52,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
-Plug 'Raimondi/delimitMate'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'Raimondi/delimitMate' "complete the brackets and punctuation
+Plug 'ycm-core/YouCompleteMe' "auto-completer for vim
 Plug 'djoshea/vim-autoread' "reloads current open file if there are changes
 Plug 'preservim/nerdcommenter' " add comments in file
 Plug 'bling/vim-airline' " vim-statusbar theme
@@ -64,7 +64,6 @@ Plug 'sharkdp/bat' " requirement for fzf
 Plug 'BurntSushi/ripgrep' " requirement for fzf
 Plug 'ggreer/the_silver_searcher' " requirement for fzf
 Plug 'dandavison/delta' " requirement for fzf
-Plug 'Chiel92/vim-autoformat'
 Plug 'ilyachur/cmake4vim'
 
 " List ends here. Plugins become visible to Vim after this call.
@@ -76,11 +75,15 @@ let g:cmake_build_dir="build"
 let g:cmake_compile_commands="1"
 let g:cmake_compile_commands_link="build/compile_commands.json"
 let g:cmake_usr_args="--parallel"
+
 let g:netrw_banner=0
 let g:netrw_liststyle=3
 
 " create tags
 command! MakeTags !ctags -R . 
+
+" compile markdown to pdf
+command! MakePdf !pandoc -t latex % -o  %<.pdf
 
 " once the tags are generated you can jump the tags with
 " ^] to jump to tag under cursor
@@ -123,13 +126,6 @@ nnoremap <F3> :set list!<CR>
 " run python file
 nnoremap <F5> :!python3 %<CR>
 
-" runs code formatter plug-in 
-noremap <F4> :Autoformat<CR>
-
-" run clangFormat on slected text
-map <C-K> :pyf </usr/share/clang/clang-format-10/clang-format.py<cr> 
-imap <C-K> <c-o> :pyf </usr/share/clang/clang-format-10/clang-format.py<cr> 
-
 " Shortcut split navigation, saving a keypress:
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -147,13 +143,6 @@ autocmd BufWritePost ~/repos/dwmblocks/config.h !cd ~/repos/dwmblocks/;make clea
 
 au BufWritePost *.tex silent! !pdflatex % >/dev/null 2>&1;
 
-au BufWritePre *.py :Autoformat
-
-function! Formatonsave()
-  let l:formatdiff = 1
-  pyf ~/llvm/tools/clang/tools/clang-format/clang-format.py
-endfunction
-autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab
 autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 expandtab
 
