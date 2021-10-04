@@ -96,6 +96,13 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# some functions
+
+findInFileAndOpen()
+{
+  grep -ri $1 | vim $(fzf --reverse | cut -d ":" -f1)
+}
+
 # some more ls aliases
 #alias ll='ls -alF'
 #alias la='ls -A'
@@ -105,6 +112,7 @@ alias cmakeConfigRel='cmake -DCMAKE_BUILD_TYPE=Release ..'
 alias cmakeBuildRel='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Release ..; cmake --build . --config Release --parallel --target'
 alias cmakeBuild='cmake --build . --parallel --target'
 alias cmakeBuildDeb='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Debug ..; cmake --build . --config Debug --parallel --target'
+alias findInFile='grep -ri '
 alias c='clear'
 alias q='exit'
 alias la='logo-ls -A'
@@ -180,7 +188,8 @@ export EDITOR="/usr/bin/vim"
 export SUDO_ASKPASS="/usr/bin/ssh-askpass"
 export VISUAL=$EDITOR
 export RANGER_LOAD_DEFAULT_RC=FALSE
-
+export HISTFILESIZE=
+export HISTSIZE=
 
 source $HOME/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
