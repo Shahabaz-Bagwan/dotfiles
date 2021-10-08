@@ -103,6 +103,16 @@ findInFileAndOpen()
   grep -ri $1 | vim $(fzf --reverse | cut -d ":" -f1)
 }
 
+findAndReplaceInDir()
+{
+  find $3 -type f -exec sed -i "s/$1/$2/g" {} +
+}
+
+findAndReplaceInFile()
+{
+  sed -i "s/$1/$2/g" $3
+}
+
 # some more ls aliases
 #alias ll='ls -alF'
 #alias la='ls -A'
