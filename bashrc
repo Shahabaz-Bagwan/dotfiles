@@ -189,8 +189,6 @@ if [[ -f $THEME ]]; then
    source $THEME
 fi
 
-set +o vi
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export TERMINAL="/usr/local/bin/st"
@@ -204,3 +202,4 @@ export HISTSIZE=
 source $HOME/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 bind '"\C-l": alias-expand-line'
+PATH="$HOME/.local/bin:$PATH"
