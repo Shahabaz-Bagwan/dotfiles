@@ -132,6 +132,11 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 map ; :
+nnoremap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>x :x<CR>
+nnoremap <leader>a :q!<CR>
+
 
 " air-line
 let g:airline_powerline_fonts=1
