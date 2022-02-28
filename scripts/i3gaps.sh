@@ -1,5 +1,20 @@
 #!/bin/bash
 
+echo "WARNING: Running this script will replace the following dotfiles"
+echo ".vimrc, .fonts, .Xresources, .xbindkeysrc, config.fish and i3config"
+echo "old files are stored in dotfiles-backup folder"
+
+echo "Creating dotfiles backup"
+mkdir $HOME/dotfiles-backup 
+
+pushd $HOME
+
+echo "Copying old dotfiles"
+cp .vimrc .fonts .config/fish/config.fish .config/i3/config .Xresources .xbindkeysrc dotfiles-backup
+
+popd
+
+
 echo "Installing required softwares....."
 sudo apt update
 sudo apt upgrade -y
