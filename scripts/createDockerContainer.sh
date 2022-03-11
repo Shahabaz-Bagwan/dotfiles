@@ -5,12 +5,12 @@ usage="$(basename "$0") [-h] [-n containerName] [-s sourceDir] [-t targetDir] --
 where:
     -h  show this help text
     -n  set the container name
-    -s  set the source directory to mount in container
-    -t  set the target directory in container"
+    -s  set the source directory to mount in container default $HOME/office
+    -t  set the target directory in container default /externalMount"
 
 name=dockerContainer
-sourceDir="$HOME"
-targetDir="$HOME"
+sourceDir="$HOME/office"
+targetDir="/externalMount"
 while getopts ':h:n:s:t:' option; do
   case "$option" in
     h) echo "$usage"
