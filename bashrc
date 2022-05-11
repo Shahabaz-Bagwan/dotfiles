@@ -96,7 +96,12 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some functions
+# custom commands
+
+vimOpen()
+{
+  out=$(fzf --reverse ) && vim $out 
+}
 
 findInFileAndOpen()
 {
@@ -106,6 +111,13 @@ findInFileAndOpen()
 findAndReplaceInDir()
 {
   find $3 -type f -exec sed -i "s/$1/$2/g" {} +
+}
+
+gitWorktreeAdd()
+{
+  branch=$(git branch --list --all | fzf --reverse | cut -d "/" -f3)
+  mkdir ../$branch
+  git worktree add ../$branch $branch
 }
 
 findAndReplaceInFile()
@@ -137,7 +149,7 @@ alias gc='git commit -m'
 alias gcc='git checkout $(git log -n30 --pretty="%h %s -- %an %ar"| fzf --reverse | sed "s/ .*//")'
 alias gitlog='git log -n30 --pretty="%h %s -- %an %ar"| fzf --reverse'
 alias gcb='git checkout $(git branch --list --all | fzf --reverse | cut -d "/" -f3)'
-alias gct='git checkout $(git tag --list | fzf )'
+alias gct='git checkout $(git tag --list --sort=-version:refname | fzf --reverse )'
 alias gsu='git submodule update --init --recursive --force'
 alias gcl='git clone '
 alias ga='git add'
@@ -202,4 +214,5 @@ export HISTSIZE=
 source $HOME/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 bind '"\C-l": alias-expand-line'
-PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH:$HOME/repos/flutter/bin"
+. "$HOME/.cargo/env"
