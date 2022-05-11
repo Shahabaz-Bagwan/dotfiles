@@ -115,17 +115,26 @@ function! ToggleNetrw()
     endif
 endfunction
 
-noremap <silent> <F6> :call ToggleNetrw()<CR>
+nmap <silent> <F6> :call ToggleNetrw()<CR>
+nmap <silent> <F4> :FZF<CR>
+imap <silent> <F4> :FZF<CR>
+
+nmap <silent> <F2> :Files<CR>
+imap <silent> <F2> :Files<CR>
 
 " changes all occurrence of a word under cursor
 ":%s/\<<C-r><C-w>\>//g<Left><Left>
-nnoremap <F8> :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+nmap <F8> :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
 " toggles list
-nnoremap <F3> :set list!<CR>
+nmap <F3> :set list!<CR>
 
 " run python file
-nnoremap <F5> :!python3 %<CR>
+nmap <F5> :!python3 %<CR>
+
+" Disable accidental mouse paste
+nmap <MiddleMouse> <Nop>
+imap <MiddleMouse> <Nop>
 
 " Shortcut split navigation, saving a keypress:
 map <C-h> <C-w>h
@@ -133,10 +142,10 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 map ; :
-nnoremap <leader>q :q<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>x :x<CR>
-nnoremap <leader>a :q!<CR>
+nmap <leader>q :q<CR>
+nmap <leader>w :w<CR>
+nmap <leader>x :x<CR>
+nmap <leader>a :q!<CR>
 
 
 " air-line
