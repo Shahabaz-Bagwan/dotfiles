@@ -58,6 +58,7 @@ Plug 'djoshea/vim-autoread' "reloads current open file if there are changes
 Plug 'preservim/nerdcommenter' " add comments in file
 Plug 'bling/vim-airline' " vim-statusbar theme
 Plug 'ap/vim-css-color' " shows color of css codes
+Plug 'rust-lang/rust.vim' " adds rust language support
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim' " fuzzy search
 Plug 'sharkdp/bat' " requirement for fzf
@@ -83,8 +84,8 @@ let g:netrw_liststyle=3
 command! MakeTags !ctags -R . 
 
 " compile markdown to pdf
-command! MakePdf !pandoc -t latex % -o  %<.pdf
-
+"command! MakePdf !pandoc -t latex % -o  %<.pdf
+command! Pdf !pdflatex % >/dev/null 2>&1;
 " once the tags are generated you can jump the tags with
 " ^] to jump to tag under cursor
 "  g^] for ambiguous tags
@@ -146,7 +147,7 @@ let g:airline#extensions#tabline#show_buffers = 1
 " autocmd for special files
 autocmd BufWritePost ~/repos/dwmblocks/config.h !cd ~/repos/dwmblocks/;make clean; make; killall -q dwmblocks; setsid dwmblocks &
 
-au BufWritePost *.tex silent! !pdflatex % >/dev/null 2>&1;
+"au BufWritePost *.tex silent! !pdflatex % >/dev/null 2>&1;
 
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab
 autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 expandtab

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ! disables middle click paste systemwide, run xbindkeys at start-up
 ! for this script to work
 "echo -n | xsel -n -i; pkill xbindkeys; xdotool click 2; xbindkeys"
