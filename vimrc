@@ -1,4 +1,5 @@
 set nu rnu " relative line numbers
+set cc=100
 set exrc " use vim config in vi
 set secure " doesn't allow other users to write in vimrc
 set incsearch " incremental serach
@@ -29,7 +30,7 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 syntax enable " enables syntax highlighting
 filetype plugin  indent on
-colorscheme desert
+"colorscheme desert
 set title
 set bg=dark
 "set mouse=a " insted use SHIFT+ctrl+C and shift+ctrl+V for copy and paste
@@ -65,7 +66,16 @@ Plug 'sharkdp/bat' " requirement for fzf
 Plug 'BurntSushi/ripgrep' " requirement for fzf
 Plug 'ggreer/the_silver_searcher' " requirement for fzf
 Plug 'dandavison/delta' " requirement for fzf
+"Plug 'neovim/nvim-lspconfig'
 Plug 'ilyachur/cmake4vim'
+
+ Plug 'ryanoasis/vim-devicons'
+ Plug 'SirVer/ultisnips'
+ Plug 'honza/vim-snippets'
+ Plug 'scrooloose/nerdtree'
+ Plug 'preservim/nerdcommenter'
+ Plug 'mhinz/vim-startify'
+ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " List ends here. Plugins become visible to Vim after this call.
 
@@ -79,6 +89,13 @@ let g:cmake_usr_args="--parallel"
 
 let g:netrw_banner=0
 let g:netrw_liststyle=3
+
+let g:syntastic_cpp_checkers = ['cpplint']
+let g:syntastic_c_checkers = ['cpplint']
+let g:syntastic_cpp_cpplint_exec = 'cpplint'
+" The following two lines are optional. Configure it to your liking!
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " create tags
 command! MakeTags !ctags -R . 
