@@ -30,7 +30,7 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 syntax enable " enables syntax highlighting
 filetype plugin  indent on
-"colorscheme desert
+colorscheme desert
 set title
 set bg=dark
 "set mouse=a " insted use SHIFT+ctrl+C and shift+ctrl+V for copy and paste
