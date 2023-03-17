@@ -247,20 +247,6 @@ bind '"\C-l": alias-expand-line'
 PATH="$HOME/.local/bin:$PATH:$HOME/repos/flutter/bin"
 . "$HOME/.cargo/env"
 export OpenCV_DIR="$HOME/openCV/opencv-4.4.0/build"
-export PATH="$HOME/tools/node-v14.15.4-linux-x64/bin:$PATH"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/shahabaz/tools/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/shahabaz/tools/miniconda/etc/profile.d/conda.sh" ]; then
-        . "/home/shahabaz/tools/miniconda/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/shahabaz/tools/miniconda/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+export lint_executable_path="/opt/pclp-1.4.1"
+export pclp_config_path="/opt/pclp-1.4.1/config"
 
