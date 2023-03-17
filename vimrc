@@ -3,7 +3,7 @@ set cc=100
 set exrc " use vim config in vi
 set secure " doesn't allow other users to write in vimrc
 set incsearch " incremental serach
-set hidden " keep a buffer open in bg 
+set hidden " keep a buffer open in bg
 set scrolloff=8 " start scrolling before end of page
 set nohlsearch " no highlights in serach
 set ignorecase "ignores case while searching
@@ -18,7 +18,7 @@ set ai " auto indent when typing
 set nofoldenable " no fold when opening files
 set fdm=syntax " fold according to syntax
 set si " substitute command for bracket sub
-set nocp " no compatible 
+set nocp " no compatible
 set wildmode=longest,list,full
 set spell
 set spelllang=en_us,de_de
@@ -30,10 +30,14 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 syntax enable " enables syntax highlighting
 filetype plugin  indent on
-colorscheme desert
 set title
-set bg=dark
+"set bg=dark
 "set mouse=a " insted use SHIFT+ctrl+C and shift+ctrl+V for copy and paste
+
+" Set cursorline
+set cursorline
+:highlight Cursorline cterm=bold ctermbg=black
+
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 set splitbelow splitright
 
@@ -53,8 +57,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Raimondi/delimitMate' "complete the brackets and punctuation
-Plug 'ycm-core/YouCompleteMe' "auto-completer for vim
 Plug 'djoshea/vim-autoread' "reloads current open file if there are changes
 Plug 'preservim/nerdcommenter' " add comments in file
 Plug 'bling/vim-airline' " vim-statusbar theme
@@ -66,21 +70,21 @@ Plug 'sharkdp/bat' " requirement for fzf
 Plug 'BurntSushi/ripgrep' " requirement for fzf
 Plug 'ggreer/the_silver_searcher' " requirement for fzf
 Plug 'dandavison/delta' " requirement for fzf
-"Plug 'neovim/nvim-lspconfig'
 Plug 'ilyachur/cmake4vim'
 
- Plug 'ryanoasis/vim-devicons'
- Plug 'SirVer/ultisnips'
- Plug 'honza/vim-snippets'
- Plug 'scrooloose/nerdtree'
- Plug 'preservim/nerdcommenter'
- Plug 'mhinz/vim-startify'
- Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ryanoasis/vim-devicons'
+"Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdcommenter'
+Plug 'mhinz/vim-startify'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " List ends here. Plugins become visible to Vim after this call.
 
 call plug#end()
 
+colorscheme dracula
 let mapleader=","
 let g:cmake_build_dir="build"
 let g:cmake_compile_commands="1"
@@ -93,12 +97,15 @@ let g:netrw_liststyle=3
 let g:syntastic_cpp_checkers = ['cpplint']
 let g:syntastic_c_checkers = ['cpplint']
 let g:syntastic_cpp_cpplint_exec = 'cpplint'
+
 " The following two lines are optional. Configure it to your liking!
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:airline_theme='dracula'
+
 " create tags
-command! MakeTags !ctags -R . 
+command! MakeTags !ctags -R .
 
 " compile markdown to pdf
 "command! MakePdf !pandoc -t latex % -o  %<.pdf
@@ -179,9 +186,10 @@ autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab
 autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 expandtab
 
 map <leader>vimrc :tabe ~/.vimrc<cr>
-autocmd BufWritePost ~/.vimrc source $MYVIMRC 
+autocmd BufWritePost ~/.vimrc source $MYVIMRC
 
-" Turns off highlighting on the bits of code that are changed, so the line that is changed is highlighted but the actual text that has changed stands out on the line and is readable.
+" Turns off highlighting on the bits of code that are changed, so the line that is changed is
+" highlighted but the actual text that has changed stands out on the line and is readable.
 if &diff
     highlight! link DiffText MatchParen
 endif
