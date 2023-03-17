@@ -100,12 +100,12 @@ fi
 
 vimOpen()
 {
-  out=$(fzf --reverse ) && vim $out 
+  out=$(fzf --reverse ) && nvim $out
 }
 
 findInFileAndOpen()
 {
-  grep -ri $1 | vim $(fzf --reverse | cut -d ":" -f1)
+  grep -ri $1 | nvim $(fzf --reverse | cut -d ":" -f1)
 }
 
 findAndReplaceInDir()
@@ -116,8 +116,28 @@ findAndReplaceInDir()
 gitWorktreeAdd()
 {
   branch=$(git branch --list --all | fzf --reverse | cut -d "/" -f3)
-  mkdir ../$branch
-  git worktree add ../$branch $branch
+  mkdir -p "../$branch"
+  git worktree add "../$branch" "$branch"
+}
+
+gcb() {
+  local selected=$(_fzf_git_branches --no-multi)
+  [ -n "$selected" ] && git checkout "$selected"
+}
+
+gcf() {
+  local selected=$(_fzf_git_files --no-multi)
+  [ -n "$selected" ] && nvim "$selected"
+}
+
+gco() {
+  local selected=$(_fzf_git_hashes --no-multi)
+  [ -n "$selected" ] && git checkout "$selected"
+}
+
+gct() {
+  local selected=$(_fzf_git_tags --no-multi)
+  [ -n "$selected" ] && git checkout "$selected"
 }
 
 findAndReplaceInFile()
@@ -129,6 +149,16 @@ findAndReplaceInFile()
 #alias ll='ls -alF'
 #alias la='ls -A'
 #alias l='ls -CF'
+alias pushdd="pushd \$PWD > /dev/null"
+alias cd='pushdd;cd'
+alias popdd='popd > /dev/null'
+alias cd.='popdd'
+alias cd..='popdd;popdd'
+alias cd...='popdd;popdd;popdd'
+alias cd....='popdd;popdd;popdd;popdd'
+alias du='dust -r'
+alias df='duf'
+alias cat='bat'
 alias cmakeClean='cmake --build . --target clean'
 alias cmakeConfigRel='cmake -DCMAKE_BUILD_TYPE=Release ..'
 alias cmakeBuildRel='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Release ..; cmake --build . --config Release --parallel --target'
@@ -136,20 +166,18 @@ alias cmakeBuild='cmake --build . --parallel --target'
 alias cmakeBuildDeb='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Debug ..; cmake --build . --config Debug --parallel --target'
 alias findInFile='grep -ri '
 alias c='clear'
+alias vim='nvim'
 alias q='exit'
 alias la='logo-ls -A'
 alias ll='logo-ls -lh'
 alias ls='logo-ls'
-alias rm='rm -vI'
+alias rm='rm -v'
 alias mv='mv -vi'
 alias cp='cp -v'
 alias r='ranger'
 alias gs='git status'
 alias gc='git commit -m'
-alias gcc='git checkout $(git log -n30 --pretty="%h %s -- %an %ar"| fzf --reverse | sed "s/ .*//")'
 alias gitlog='git log -n30 --pretty="%h %s -- %an %ar"| fzf --reverse'
-alias gcb='git checkout $(git branch --list --all | fzf --reverse | cut -d "/" -f3)'
-alias gct='git checkout $(git tag --list --sort=-version:refname | fzf --reverse )'
 alias gsu='git submodule update --init --recursive --force'
 alias gcl='git clone '
 alias ga='git add'
@@ -203,8 +231,10 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+source ~/repos/fzf-git.sh/fzf-git.sh
+
 export TERMINAL="/usr/local/bin/st"
-export EDITOR="/usr/local/bin/vim"
+export EDITOR="/usr/local/bin/nvim"
 export SUDO_ASKPASS="/usr/bin/ssh-askpass"
 export VISUAL=$EDITOR
 export RANGER_LOAD_DEFAULT_RC=FALSE
