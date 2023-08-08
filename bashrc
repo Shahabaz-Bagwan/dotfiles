@@ -98,11 +98,6 @@ fi
 
 # custom commands
 
-vimOpen()
-{
-  out=$(fzf --reverse ) && nvim $out
-}
-
 findInFileAndOpen()
 {
   grep -ri $1 | nvim $(fzf --reverse | cut -d ":" -f1)
@@ -115,14 +110,13 @@ findAndReplaceInDir()
 
 gitWorktreeAdd()
 {
-  branch=$(git branch --list --all | fzf --reverse | cut -d "/" -f3)
+  branch=$(git branch --list --all | fzf --reverse --preview "git diff {1} --color=always | delta" | cut -d "/" -f3)
   mkdir -p "../$branch"
   git worktree add "../$branch" "$branch"
 }
 
 gcb() {
-  local selected=$(_fzf_git_branches --no-multi)
-  [ -n "$selected" ] && git checkout "$selected"
+  git checkout $(git branch --list --all | fzf --reverse --preview "git diff {1} --color=always | delta"| cut -d "/" -f3)
 }
 
 gcf() {
@@ -130,7 +124,7 @@ gcf() {
   [ -n "$selected" ] && nvim "$selected"
 }
 
-gco() {
+gcc() {
   local selected=$(_fzf_git_hashes --no-multi)
   [ -n "$selected" ] && git checkout "$selected"
 }
@@ -145,10 +139,23 @@ findAndReplaceInFile()
   sed -i "s/$1/$2/g" $3
 }
 
+opendir()
+{
+  testDir=$(fd -t directory --hidden --exclude .git --exclude .github --search-path ~ | fzf --reverse --border=rounded --height 20)
+  if [ -z "$testDir" ]; then echo "operation canceled"; else cd "$testDir"; fi
+}
+
+openfile()
+{
+  fd -t file --hidden --exclude .git --exclude .github --search-path . | fzf --reverse --border=rounded --height 20 | xargs -r nvim
+}
+
 # some more ls aliases
 #alias ll='ls -alF'
 #alias la='ls -A'
 #alias l='ls -CF'
+alias vim="NVIM_APPNAME="" nvim"
+alias lazy='NVIM_APPNAME=lazy nvim'
 alias pushdd="pushd \$PWD > /dev/null"
 alias cd='pushdd;cd'
 alias popdd='popd > /dev/null'
@@ -158,19 +165,18 @@ alias cd...='popdd;popdd;popdd'
 alias cd....='popdd;popdd;popdd;popdd'
 alias du='dust -r'
 alias df='duf'
-alias cat='bat'
+alias cat='batcat'
 alias cmakeClean='cmake --build . --target clean'
 alias cmakeConfigRel='cmake -DCMAKE_BUILD_TYPE=Release ..'
-alias cmakeBuildRel='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Release ..; cmake --build . --config Release --parallel --target'
-alias cmakeBuild='cmake --build . --parallel --target'
-alias cmakeBuildDeb='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Debug ..; cmake --build . --config Debug --parallel --target'
+alias cmakeBuildRel='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Release ..; cmake --build . --config Release -j $(nproc --ignore=2) --target'
+alias cmakeBuild='cmake --build . -j $(nproc --ignore=2) --target'
+alias cmakeBuildDeb='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Debug ..; cmake --build . --config Debug -j $(nproc --ignore=2) --target'
 alias findInFile='grep -ri '
 alias c='clear'
-alias vim='nvim'
 alias q='exit'
-alias la='logo-ls -A'
-alias ll='logo-ls -lh'
-alias ls='logo-ls'
+alias la='exa --group-directories-first --icons --all --long'
+alias ll='exa --group-directories-first --icons --long'
+alias ls='exa --group-directories-first --icons'
 alias rm='rm -v'
 alias mv='mv -vi'
 alias cp='cp -v'
@@ -186,7 +192,7 @@ alias gap='git add -p'
 alias gp='git push'
 alias gpl='git pull'
 alias gpla='git pull --all --tags'
-alias gd='git diff'
+alias gd='git diff | delta'
 alias gr='git remote'
 alias grv='git remote -v'
 alias grs='git remote set-url origin'

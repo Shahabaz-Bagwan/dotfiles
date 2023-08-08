@@ -35,8 +35,8 @@ elif [ $monitor_mode = "INTERNAL" ]; then
 else
         monitor_mode="all"
         xrandr --output $INTERNAL_OUTPUT --auto --primary --output $EXTERNAL_OUTPUT2 \
-               --auto --right-of $INTERNAL_OUTPUT --output $EXTERNAL_OUTPUT --rotate right --auto \ 
-               --right-of $EXTERNAL_OUTPUT2
+          --auto --right-of $INTERNAL_OUTPUT --output $EXTERNAL_OUTPUT --rotate right \
+          --auto --right-of $EXTERNAL_OUTPUT2
 fi
 echo "${monitor_mode}" > /tmp/monitor_mode.dat
 
