@@ -12,7 +12,7 @@ INTERNAL_OUTPUT=$(echo $screens | awk '1 {print $1}')
 
 # if we don't have a file, start at zero
 if [ ! -f "/tmp/monitor_mode.dat" ] ; then
-  monitor_mode="all"
+  monitor_mode=""
 
 # otherwise read the value from the file
 else

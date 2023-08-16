@@ -139,7 +139,7 @@ findAndReplaceInFile()
   sed -i "s/$1/$2/g" $3
 }
 
-opendir()
+odir()
 {
   testDir=$(fd -t directory --hidden --exclude .git --exclude .github --search-path ~ | fzf --reverse --border=rounded --height 20)
   if [ -z "$testDir" ]; then echo "operation canceled"; else cd "$testDir"; fi
@@ -239,20 +239,20 @@ fi
 
 source ~/repos/fzf-git.sh/fzf-git.sh
 
-export TERMINAL="/usr/local/bin/st"
 export EDITOR="/usr/local/bin/nvim"
 export SUDO_ASKPASS="/usr/bin/ssh-askpass"
 export VISUAL=$EDITOR
-export RANGER_LOAD_DEFAULT_RC=FALSE
+#export RANGER_LOAD_DEFAULT_RC=FALSE
 export HISTFILESIZE=
 export HISTSIZE=
 
 source $HOME/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 bind '"\C-l": alias-expand-line'
-PATH="$HOME/.local/bin:$PATH:$HOME/repos/flutter/bin"
+PATH="$PATH:$HOME/.local/bin"
 . "$HOME/.cargo/env"
 export OpenCV_DIR="$HOME/openCV/opencv-4.4.0/build"
 export lint_executable_path="/opt/pclp-1.4.1"
 export pclp_config_path="/opt/pclp-1.4.1/config"
-
+export IPP_ROOT="/opt/FWA/IPP"
+export BOOST_BUILD_PATH="/usr/share/boost-build/src/kernel/"
