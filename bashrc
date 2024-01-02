@@ -154,8 +154,8 @@ openfile()
 #alias ll='ls -alF'
 #alias la='ls -A'
 #alias l='ls -CF'
-alias vim="NVIM_APPNAME="" nvim"
-alias lazy='NVIM_APPNAME=lazy nvim'
+alias vim="nvim"
+alias vi="nvim"
 alias pushdd="pushd \$PWD > /dev/null"
 alias cd='pushdd;cd'
 alias popdd='popd > /dev/null'
@@ -197,7 +197,7 @@ alias gr='git remote'
 alias grv='git remote -v'
 alias grs='git remote set-url origin'
 alias gra='git remote add origin'
-alias installer='sudo apt install -yy'
+alias installer='sudo apt update; sudo apt upgrade; sudo apt install -yy'
 alias autoremove='sudo apt autoremove -yy'
 alias uninstaller='sudo apt remove'
 alias purger='sudo apt remove --purge -yy'
@@ -250,7 +250,7 @@ source $HOME/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 bind '"\C-l": alias-expand-line'
 PATH="$PATH:$HOME/.local/bin"
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 export OpenCV_DIR="$HOME/openCV/opencv-4.4.0/build"
 export lint_executable_path="/opt/pclp-1.4.1"
 export pclp_config_path="/opt/pclp-1.4.1/config"
