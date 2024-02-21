@@ -18,8 +18,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=9000
+HISTFILESIZE=9000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -142,7 +142,7 @@ findAndReplaceInFile()
 odir()
 {
   testDir=$(fd -t directory --hidden --exclude .git --exclude .github --search-path ~ | fzf --reverse --border=rounded --height 20)
-  if [ -z "$testDir" ]; then echo "operation canceled"; else cd "$testDir"; fi
+   cd "$testDir"
 }
 
 openfile()
@@ -154,6 +154,7 @@ openfile()
 #alias ll='ls -alF'
 #alias la='ls -A'
 #alias l='ls -CF'
+alias lg="lazygit"
 alias vim="nvim"
 alias vi="nvim"
 alias pushdd="pushd \$PWD > /dev/null"
@@ -197,7 +198,7 @@ alias gr='git remote'
 alias grv='git remote -v'
 alias grs='git remote set-url origin'
 alias gra='git remote add origin'
-alias installer='sudo apt update; sudo apt upgrade; sudo apt install -yy'
+alias installer='sudo apt install -yy'
 alias autoremove='sudo apt autoremove -yy'
 alias uninstaller='sudo apt remove'
 alias purger='sudo apt remove --purge -yy'
@@ -249,6 +250,7 @@ export HISTSIZE=
 source $HOME/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 bind '"\C-l": alias-expand-line'
+bind -x '"\C-j": "odir"'
 PATH="$PATH:$HOME/.local/bin"
 # . "$HOME/.cargo/env"
 export OpenCV_DIR="$HOME/openCV/opencv-4.4.0/build"
