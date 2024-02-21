@@ -141,8 +141,10 @@ findAndReplaceInFile()
 
 odir()
 {
-  testDir=$(fd -t directory --hidden --exclude .git --exclude .github --search-path ~ | fzf --reverse --border=rounded --height 20)
-   cd "$testDir"
+    cd "$(fd -t directory --hidden --exclude .git --exclude .github --search-path ~ | fzf --reverse --border=rounded --height 20)"
+    # one return press to finish the fzf selection and other for cd
+    xdotool key Return
+    xdotool key Return
 }
 
 openfile()
