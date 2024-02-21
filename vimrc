@@ -1,3 +1,4 @@
+let mapleader = " "
 set nu rnu " relative line numbers
 set cc=100
 set exrc " use vim config in vi
@@ -20,6 +21,7 @@ set fdm=syntax " fold according to syntax
 set si " substitute command for bracket sub
 set nocp " no compatible
 set wildmode=longest,list,full
+set clipboard = "unnamedplus"
 set spell
 set spelllang=en_us,de_de
 set path+=** " Provides tab-completion
@@ -29,10 +31,10 @@ set complete=.,w,u,t,b,kspell
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 
 syntax enable " enables syntax highlighting
-filetype plugin  indent on
+filetype plugin indent on
 set title
 "set bg=dark
-"set mouse=a " insted use SHIFT+ctrl+C and shift+ctrl+V for copy and paste
+set mouse=a " insted use SHIFT+ctrl+C and shift+ctrl+V for copy and paste
 
 " Set cursorline
 set cursorline
@@ -41,71 +43,13 @@ set cursorline
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 set splitbelow splitright
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 if has("gui_running")
   set guifont=UbuntuMono\ Nerd\ Font\ Mono\ 12
   colorscheme evening
 endif
 
-
-" Plugins will be downloaded under the specified directory.
-call plug#begin('~/.vim/plugged')
-
-" Declare the list of plugins.
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'Raimondi/delimitMate' "complete the brackets and punctuation
-Plug 'djoshea/vim-autoread' "reloads current open file if there are changes
-Plug 'preservim/nerdcommenter' " add comments in file
-Plug 'bling/vim-airline' " vim-statusbar theme
-Plug 'ap/vim-css-color' " shows color of css codes
-Plug 'rust-lang/rust.vim' " adds rust language support
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim' " fuzzy search
-Plug 'sharkdp/bat' " requirement for fzf
-Plug 'BurntSushi/ripgrep' " requirement for fzf
-Plug 'ggreer/the_silver_searcher' " requirement for fzf
-Plug 'dandavison/delta' " requirement for fzf
-Plug 'ilyachur/cmake4vim'
-
-Plug 'ryanoasis/vim-devicons'
-"Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree'
-Plug 'preservim/nerdcommenter'
-Plug 'mhinz/vim-startify'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" List ends here. Plugins become visible to Vim after this call.
-
-call plug#end()
-
-colorscheme dracula
-let mapleader=","
-let g:cmake_build_dir="build"
-let g:cmake_compile_commands="1"
-let g:cmake_compile_commands_link="build/compile_commands.json"
-let g:cmake_usr_args="--parallel"
-
 let g:netrw_banner=0
 let g:netrw_liststyle=3
-
-let g:syntastic_cpp_checkers = ['cpplint']
-let g:syntastic_c_checkers = ['cpplint']
-let g:syntastic_cpp_cpplint_exec = 'cpplint'
-
-" The following two lines are optional. Configure it to your liking!
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:airline_theme='dracula'
-
-" create tags
-command! MakeTags !ctags -R .
 
 " compile markdown to pdf
 "command! MakePdf !pandoc -t latex % -o  %<.pdf
@@ -140,10 +84,6 @@ function! ToggleNetrw()
 endfunction
 
 nmap <silent> <F6> :call ToggleNetrw()<CR>
-nmap <silent> <F4> :FZF<CR>
-imap <silent> <F4> :FZF<CR>
-
-nmap <silent> <F2> :Files<CR>
 imap <silent> <F2> :Files<CR>
 
 " changes all occurrence of a word under cursor
@@ -166,16 +106,14 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 map ; :
+
 nmap <leader>q :q<CR>
 nmap <leader>w :w<CR>
-nmap <leader>x :x<CR>
+nmap <leader>x :bd<CR>
 nmap <leader>a :q!<CR>
+nmap <Tab> :bn<CR>
+nmap <S-Tab> :bp<CR>
 
-
-" air-line
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
 
 " autocmd for special files
 autocmd BufWritePost ~/repos/dwmblocks/config.h !cd ~/repos/dwmblocks/;make clean; make; killall -q dwmblocks; setsid dwmblocks &
