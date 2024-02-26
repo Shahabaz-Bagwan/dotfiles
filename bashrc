@@ -253,6 +253,9 @@ source $HOME/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 bind '"\C-l": alias-expand-line'
 bind -x '"\C-j": "odir"'
+# bind ctrl+2 to set the correct keymap
+# use 'showkey -a' to get the keybinding you want
+bind -x '"\C-@": "setxkbmap us altgr-intl"'
 PATH="$PATH:$HOME/.local/bin"
 # . "$HOME/.cargo/env"
 export OpenCV_DIR="$HOME/openCV/opencv-4.4.0/build"
