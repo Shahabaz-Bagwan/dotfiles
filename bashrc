@@ -157,15 +157,9 @@ openfile()
 #alias la='ls -A'
 #alias l='ls -CF'
 alias lg="lazygit"
+alias vimnew="NVIM_APPNAME=nvNew nvim"
 alias vim="nvim"
 alias vi="nvim"
-alias pushdd="pushd \$PWD > /dev/null"
-alias cd='pushdd;cd'
-alias popdd='popd > /dev/null'
-alias cd.='popdd'
-alias cd..='popdd;popdd'
-alias cd...='popdd;popdd;popdd'
-alias cd....='popdd;popdd;popdd;popdd'
 alias du='dust -r'
 alias df='duf'
 alias cat='batcat'
@@ -180,7 +174,6 @@ alias q='exit'
 alias la='exa --group-directories-first --icons --all --long'
 alias ll='exa --group-directories-first --icons --long'
 alias ls='exa --group-directories-first --icons'
-alias rm='rm -v'
 alias mv='mv -vi'
 alias cp='cp -v'
 alias r='ranger'
@@ -252,7 +245,7 @@ export HISTSIZE=
 source $HOME/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 bind '"\C-l": alias-expand-line'
-bind -x '"\C-j": "odir"'
+bind -x '"\C-k": "odir"'
 # bind alt+a to set the correct keymap
 # use 'showkey -a' to get the keybinding you want
 bind -x '"\ea": "setxkbmap us altgr-intl"'
@@ -264,3 +257,4 @@ export lint_executable_path="/opt/pclp-1.4.1"
 export pclp_config_path="/opt/pclp-1.4.1/config"
 export IPP_ROOT="/opt/FWA/IPP"
 export BOOST_BUILD_PATH="/usr/share/boost-build/src/kernel/"
+export PYTHONPATH="/usr/share/gcc/python:${PYTHONPATH}"
