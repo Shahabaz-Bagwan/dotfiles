@@ -97,6 +97,17 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # custom commands
+yazi() {
+  local tmpfile=$(mktemp)
+  command yazi "$@" --cwd-file="$tmpfile"
+  if [ -f "$tmpfile" ]; then
+    local dir=$(cat "$tmpfile")
+    if [ -d "$dir" ]; then
+      cd "$dir"
+    fi
+    rm -f "$tmpfile"
+  fi
+}
 
 findInFileAndOpen()
 {
@@ -141,15 +152,15 @@ findAndReplaceInFile()
 
 odir()
 {
-    cd "$(fd -t directory --hidden --exclude .git --exclude .github --search-path ~ | fzf --reverse --border=rounded --height 20)"
+    cd "$(fdfind -t directory --hidden --exclude .git --exclude .github --search-path ~ | fzf --reverse --border=rounded --height 20)"
     # one return press to finish the fzf selection and other for cd
-    xdotool key Return
-    xdotool key Return
+    # xdotool key Return
+    # xdotool key Return
 }
 
 openfile()
 {
-  fd -t file --hidden --exclude .git --exclude .github --search-path . | fzf --reverse --border=rounded --height 20 | xargs -r nvim
+  fdfind -t file --hidden --exclude .git --exclude .github --search-path . | fzf --reverse --border=rounded --height 20 | xargs -r nvim
 }
 
 # some more ls aliases
@@ -176,7 +187,7 @@ alias ll='exa --group-directories-first --icons --long'
 alias ls='exa --group-directories-first --icons'
 alias mv='mv -vi'
 alias cp='cp -v'
-alias r='ranger'
+alias r='yazi'
 alias gs='git status'
 alias gc='git commit -m'
 alias gitlog='git log -n30 --pretty="%h %s -- %an %ar"| fzf --reverse'
@@ -235,7 +246,7 @@ fi
 
 source ~/repos/fzf-git.sh/fzf-git.sh
 
-export EDITOR="/usr/local/bin/nvim"
+export EDITOR="/snap/bin/nvim"
 export SUDO_ASKPASS="/usr/bin/ssh-askpass"
 export VISUAL=$EDITOR
 #export RANGER_LOAD_DEFAULT_RC=FALSE
@@ -252,9 +263,9 @@ bind -x '"\ea": "setxkbmap us altgr-intl"'
 
 PATH="$PATH:$HOME/.local/bin"
 # . "$HOME/.cargo/env"
-export OpenCV_DIR="$HOME/openCV/opencv-4.4.0/build"
-export lint_executable_path="/opt/pclp-1.4.1"
-export pclp_config_path="/opt/pclp-1.4.1/config"
 export IPP_ROOT="/opt/FWA/IPP"
 export BOOST_BUILD_PATH="/usr/share/boost-build/src/kernel/"
 export PYTHONPATH="/usr/share/gcc/python:${PYTHONPATH}"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(fzf --bash)"
