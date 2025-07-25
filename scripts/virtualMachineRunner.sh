@@ -18,5 +18,6 @@ sudo qemu-system-x86_64 \
   -vga virtio  \
   -usb  \
   -device usb-tablet  \
-  -device e1000,netdev=net0 \
+  -device virtio-net-pci,netdev=net0 \
+  -display gtk,gl=off \
   -netdev user,id=net0,hostfwd=tcp::5555-:22
