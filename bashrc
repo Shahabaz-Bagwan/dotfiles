@@ -167,8 +167,6 @@ openfile()
 #alias ll='ls -alF'
 #alias la='ls -A'
 #alias l='ls -CF'
-alias lg="lazygit"
-alias vimnew="NVIM_APPNAME=nvNew nvim"
 alias vim="nvim"
 alias vi="nvim"
 alias du='dust -r'
@@ -180,34 +178,16 @@ alias cmakeBuildRel='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Re
 alias cmakeBuild='cmake --build . -j $(nproc --ignore=2) --target'
 alias cmakeBuildDeb='cmake --build . --target clean; cmake -DCMAKE_BUILD_TYPE=Debug ..; cmake --build . --config Debug -j $(nproc --ignore=2) --target'
 alias findInFile='grep -ri '
-alias c='clear'
-alias q='exit'
 alias la='exa --group-directories-first --icons --all --long'
 alias ll='exa --group-directories-first --icons --long'
 alias ls='exa --group-directories-first --icons'
 alias mv='mv -vi'
 alias cp='cp -v'
-alias r='yazi'
-alias gs='git status'
-alias gc='git commit -m'
 alias gitlog='git log -n30 --pretty="%h %s -- %an %ar"| fzf --reverse'
 alias gsu='git submodule update --init --recursive --force'
-alias gcl='git clone '
-alias ga='git add'
-alias gaa='git add -A'
-alias gap='git add -p'
-alias gp='git push'
-alias gpl='git pull'
-alias gpla='git pull --all --tags'
-alias gd='git diff | delta'
-alias gr='git remote'
-alias grv='git remote -v'
-alias grs='git remote set-url origin'
-alias gra='git remote add origin'
 alias installer='sudo apt install -yy'
 alias autoremove='sudo apt autoremove -yy'
 alias uninstaller='sudo apt remove'
-alias purger='sudo apt remove --purge -yy'
 alias updater='sudo apt update; sudo apt upgrade -yy'
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -269,3 +249,26 @@ export PYTHONPATH="/usr/share/gcc/python:${PYTHONPATH}"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(fzf --bash)"
+
+# Reuse existing ssh-agent if possible
+SSH_ENV="$HOME/.ssh/agent-environment"
+
+function start_agent {
+    echo "Starting new ssh-agent..."
+    eval "$(ssh-agent -s)" > /dev/null
+    ssh-add ~/.ssh/id_ed25519
+    ssh-add ~/.ssh/office
+    echo "export SSH_AGENT_PID=$SSH_AGENT_PID" > "$SSH_ENV"
+    echo "export SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> "$SSH_ENV"
+    chmod 600 "$SSH_ENV"
+}
+
+# Load ssh-agent settings if possible
+if [ -f "$SSH_ENV" ]; then
+    source "$SSH_ENV" > /dev/null
+    if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
+        start_agent
+    fi
+else
+    start_agent
+fi
