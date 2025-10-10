@@ -6,8 +6,8 @@ shopt -s autocd cdspell dirspell direxpand
 # for examples
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -34,12 +34,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -48,14 +48,14 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
 fi
 
 GIT_PS1_DESCRIBE_STYLE='contains'
@@ -74,23 +74,22 @@ unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+xterm* | rxvt*)
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  ;;
+*) ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -103,31 +102,28 @@ yazi() {
   if [ -f "$tmpfile" ]; then
     local dir=$(cat "$tmpfile")
     if [ -d "$dir" ]; then
-      cd "$dir"
+      cd "$dir" || exit
     fi
     rm -f "$tmpfile"
   fi
 }
 
-findInFileAndOpen()
-{
-  grep -ri $1 | nvim $(fzf --reverse | cut -d ":" -f1)
+findInFileAndOpen() {
+  grep -ri "$1" | nvim $(fzf --reverse | cut -d ":" -f1)
 }
 
-findAndReplaceInDir()
-{
-  find $3 -type f -exec sed -i "s/$1/$2/g" {} +
+findAndReplaceInDir() {
+  find "$3" -type f -exec sed -i "s/$1/$2/g" {} +
 }
 
-gitWorktreeAdd()
-{
+gitWorktreeAdd() {
   branch=$(git branch --list --all | fzf --reverse --preview "git diff {1} --color=always | delta" | cut -d "/" -f3)
   mkdir -p "../$branch"
   git worktree add "../$branch" "$branch"
 }
 
 gcb() {
-  git checkout $(git branch --list --all | fzf --reverse --preview "git diff {1} --color=always | delta"| cut -d "/" -f3)
+  git checkout $(git branch --list --all | fzf --reverse --preview "git diff {1} --color=always | delta" | cut -d "/" -f3)
 }
 
 gcf() {
@@ -145,21 +141,19 @@ gct() {
   [ -n "$selected" ] && git checkout "$selected"
 }
 
-findAndReplaceInFile()
-{
-  sed -i "s/$1/$2/g" $3
+findAndReplaceInFile() {
+  sed -i "s/$1/$2/g" "$3"
 }
 
-odir()
-{
-    cd "$(fdfind -t directory --hidden --exclude .git --exclude .github --search-path ~ | fzf --reverse --border=rounded --height 20)"
-    # one return press to finish the fzf selection and other for cd
-    # xdotool key Return
-    # xdotool key Return
+odir() {
+  if [ $# -gt 0 ]; then
+    cd "$(fdfind -t directory --hidden --exclude .git --exclude .github --search-path ~ | fzf -q "$1" --reverse --border=rounded --height 20)" || exit
+  else
+    cd "$(fdfind -t directory --hidden --exclude .git --exclude .github --search-path ~ | fzf --reverse --border=rounded --height 20)" || exit
+  fi
 }
 
-openfile()
-{
+openfile() {
   fdfind -t file --hidden --exclude .git --exclude .github --search-path . | fzf --reverse --border=rounded --height 20 | xargs -r nvim
 }
 
@@ -167,6 +161,7 @@ openfile()
 #alias ll='ls -alF'
 #alias la='ls -A'
 #alias l='ls -CF'
+alias cd="z"
 alias vim="nvim"
 alias vi="nvim"
 alias du='dust -r'
@@ -200,7 +195,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -218,22 +213,22 @@ fi
 # https://github.com/shahabaz-bagwan/agnoster-bash
 export THEME=$HOME/.bash/themes/agnoster-bash/agnoster.bash
 if [[ -f $THEME ]]; then
-   export DEFAULT_USER=`whoami`
-   source $THEME
+  export DEFAULT_USER=$(whoami)
+  source "$THEME"
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 source ~/repos/fzf-git.sh/fzf-git.sh
 
-export EDITOR="/snap/bin/nvim"
+export EDITOR="/home/shahabaz/.local/share/bob/nvim-bin/nvim"
 export SUDO_ASKPASS="/usr/bin/ssh-askpass"
 export VISUAL=$EDITOR
 #export RANGER_LOAD_DEFAULT_RC=FALSE
 export HISTFILESIZE=
 export HISTSIZE=
 
-source $HOME/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
+source "$HOME"/repos/fzf-tab-completion/bash/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 bind '"\C-l": alias-expand-line'
 bind -x '"\C-k": "odir"'
@@ -242,6 +237,11 @@ bind -x '"\C-k": "odir"'
 bind -x '"\ea": "setxkbmap us altgr-intl"'
 
 PATH="$PATH:$HOME/.local/bin"
+PATH="$PATH:/snap/bin"
+PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
+
+export PATH="/home/shahabaz/.local/share/bob/nvim-bin:$PATH"
+
 # . "$HOME/.cargo/env"
 export IPP_ROOT="/opt/FWA/IPP"
 export BOOST_BUILD_PATH="/usr/share/boost-build/src/kernel/"
@@ -249,26 +249,27 @@ export PYTHONPATH="/usr/share/gcc/python:${PYTHONPATH}"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(fzf --bash)"
+eval "$(zoxide init bash)"
 
 # Reuse existing ssh-agent if possible
 SSH_ENV="$HOME/.ssh/agent-environment"
 
 function start_agent {
-    echo "Starting new ssh-agent..."
-    eval "$(ssh-agent -s)" > /dev/null
-    ssh-add ~/.ssh/id_ed25519
-    ssh-add ~/.ssh/office
-    echo "export SSH_AGENT_PID=$SSH_AGENT_PID" > "$SSH_ENV"
-    echo "export SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> "$SSH_ENV"
-    chmod 600 "$SSH_ENV"
+  echo "Starting new ssh-agent..."
+  eval "$(ssh-agent -s)" >/dev/null
+  ssh-add ~/.ssh/id_ed25519
+  ssh-add ~/.ssh/office
+  echo "export SSH_AGENT_PID=$SSH_AGENT_PID" >"$SSH_ENV"
+  echo "export SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >>"$SSH_ENV"
+  chmod 600 "$SSH_ENV"
 }
 
 # Load ssh-agent settings if possible
 if [ -f "$SSH_ENV" ]; then
-    source "$SSH_ENV" > /dev/null
-    if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
-        start_agent
-    fi
-else
+  source "$SSH_ENV" >/dev/null
+  if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
     start_agent
+  fi
+else
+  start_agent
 fi
